@@ -84,7 +84,6 @@ public class MainActivity extends Activity implements Callback<BASAccessToken> {
         // calls can only be used once but you can easily clone them
         //Call<StackOverflowQuestions> c = call.clone();
         //c.enqueue(this);
-
     }
 
     private void doUserInfo() {
