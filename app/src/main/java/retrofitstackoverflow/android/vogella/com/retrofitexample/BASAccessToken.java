@@ -1,69 +1,81 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 
-public class BASAccessToken {
+public class BASAccessToken extends BaseResponse {
 
-    private String accessToken;
-    private String tokenType;
-    private int expiresIn;
+    public String access_token;
+    public String token_type;
+    public int expires_in;
 
     /**
      *
      * @return
-     * The accessToken
-     */
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    /**
-     *
-     * @param accessToken
      * The access_token
      */
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    /**
+     *
+     * @param access_token
+     * The access_token
+     */
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 
     /**
      *
      * @return
-     * The tokenType
-     */
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    /**
-     *
-     * @param tokenType
      * The token_type
      */
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
+    public String getToken_type() {
+        return token_type;
+    }
+
+    /**
+     *
+     * @param token_type
+     * The token_type
+     */
+    public void setToken_type(String token_type) {
+        this.token_type = token_type;
     }
 
     /**
      *
      * @return
-     * The expiresIn
+     * The expires_in
      */
-    public int getExpiresIn() {
-        return expiresIn;
+    public int getExpires_in() {
+        return expires_in;
     }
 
     /**
      *
-     * @param expiresIn
+     * @param expires_in
      * The expires_in
      */
-    public void setExpiresIn(int expiresIn) {
-        this.expiresIn = expiresIn;
+    public void setExpires_in(int expires_in) {
+        this.expires_in = expires_in;
     }
 
-//    @Override
-//    public String toString() {
+    @Override
+    public String toString() {
 //        return ToStringBuilder.reflectionToString(this);
-//    }
+//        return StringUtil.toDetailString(this);
+//        return ModelUtil.toStringFor(this);
+        StringBuilder result = new StringBuilder();
+        String NEWLINE = System.getProperty("line.separator");
+
+        result.append(this.getClass().getSimpleName() + " Object {" + NEWLINE);
+        result.append(" access_token: " + access_token + NEWLINE);
+        result.append(" token_type: " + token_type + NEWLINE);
+        result.append(" expires_in: " + expires_in + NEWLINE);
+        result.append("}");
+
+        return result.toString();
+    }
 
 }

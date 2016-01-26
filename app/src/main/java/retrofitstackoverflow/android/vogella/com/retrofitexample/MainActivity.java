@@ -1,11 +1,14 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Interceptor;
@@ -22,44 +25,34 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class MainActivity extends ListActivity implements Callback<BASAccessToken> {
+public class MainActivity extends Activity implements Callback<BASAccessToken> {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        requestWindowFeature(Window.FEATURE_PROGRESS);
-        ArrayAdapter<Question> arrayAdapter =
-                new ArrayAdapter<Question>(this,
-                        android.R.layout.simple_list_item_1,
-                        android.R.id.text1,
-                        new ArrayList<Question>());
-        setListAdapter(arrayAdapter);
-        setProgressBarIndeterminateVisibility(true);
-        setProgressBarVisibility(true);
+        setContentView(R.layout.activity_main);
     }
 
     private void doIt() {
 
         BASAuthInfo basAuthInfo = new BASAuthInfo();
 
-        // Define the interceptor, add authentication headers
-        Interceptor interceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder().addHeader("User-Agent", "Retrofit-Sample-App").build();
-                return chain.proceed(newRequest);
-            }
-        };
-
+//        // Define the interceptor, add authentication headers
+//        Interceptor interceptor = new Interceptor() {
+//            @Override
+//            public Response intercept(Chain chain) throws IOException {
+//                Request newRequest = chain.request().newBuilder().addHeader("User-Agent", "Retrofit-Sample-App").build();
+//                return chain.proceed(newRequest);
+//            }
+//        };
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         // set your desired log level
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient httpClient = new OkHttpClient();
-        // add your other interceptors …
-        httpClient.interceptors().add(interceptor);
+        // add your other interceptors
+//        httpClient.interceptors().add(interceptor);
         // add logging as last interceptor
         httpClient.interceptors().add(logging);  // <-- this is the important line!
 
@@ -73,7 +66,13 @@ public class MainActivity extends ListActivity implements Callback<BASAccessToke
         // prepare call in Retrofit 2.0
         BASCloudAPI basCloudAPI = retrofit.create(BASCloudAPI.class);
 
-        Call<BASAccessToken> call = basCloudAPI.loginUser(basAuthInfo);
+        Call<BASAccessToken> call = basCloudAPI.loginUser(
+                basAuthInfo.client_id,
+                basAuthInfo.client_secret,
+                basAuthInfo.grant_type,
+                basAuthInfo.scope,
+                basAuthInfo.email,
+                basAuthInfo.password);
         //asynchronous call
         call.enqueue(this);
 
@@ -115,20 +114,22 @@ public class MainActivity extends ListActivity implements Callback<BASAccessToke
 //        ArrayAdapter<Question> adapter = (ArrayAdapter<Question>) getListAdapter();
 //        adapter.clear();
 //        adapter.addAll(response.body().items);
+        TextView myTitle = (TextView)findViewById(R.id.textView2);
+        TextView myTextView = (TextView)findViewById(R.id.textView);
 
-        Toast.makeText(this.getApplicationContext(), response.message(), Toast.LENGTH_LONG);
+        myTitle.setText("Success...");
+        myTextView.setText(response.body().toString());
+//
+//        Toast.makeText(this.getApplicationContext(), response.message(), Toast.LENGTH_LONG);
     }
-
-//    @Override
-//    public void onResponse(Response<StackOverflowQuestions> response, Retrofit retrofit) {
-//        setProgressBarIndeterminateVisibility(false);
-//        ArrayAdapter<Question> adapter = (ArrayAdapter<Question>) getListAdapter();
-//        adapter.clear();
-//        adapter.addAll(response.body().items);
-//    }
 
     @Override
     public void onFailure(Throwable t) {
-        Toast.makeText(MainActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        TextView myTitle = (TextView)findViewById(R.id.textView2);
+        TextView myTextView = (TextView)findViewById(R.id.textView);
+
+        myTitle.setText("Failure...");
+        myTextView.setText(t.getLocalizedMessage());
     }
 }

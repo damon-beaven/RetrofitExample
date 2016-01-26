@@ -2,6 +2,7 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
@@ -23,5 +24,12 @@ public interface BASCloudAPI {
 
     @POST("/oauth/access_token")
     @FormUrlEncoded
-    Call<BASAccessToken> loginUser(@Body BASAuthInfo user);
+    Call<BASAccessToken> loginUser(@Field("client_id") String clientId,
+                                   @Field("client_secret") String clientSecret,
+                                   @Field("grant_type") String grantType,
+                                   @Field("scope") String scope,
+                                   @Field("email") String email,
+                                   @Field("password") String password);
+
+//    Call<BASAccessToken> loginUser(@Body BASAuthInfo user);
 }

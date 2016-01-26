@@ -2,7 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_load"
-        android:title="Load"
+        android:id="@+id/menu_auth"
+        android:title="Auth"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_userInfo"
+        android:title="UserInfo"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_userDevices"
+        android:title="UserDevices"
         app:showAsAction="ifRoom"/>
 </menu>
