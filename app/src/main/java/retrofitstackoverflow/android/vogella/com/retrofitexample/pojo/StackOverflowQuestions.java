@@ -1,4 +1,4 @@
-package retrofitstackoverflow.android.vogella.com.retrofitexample;
+package retrofitstackoverflow.android.vogella.com.retrofitexample.pojo;
 
 /**
  * Created by dbeaven on 1/25/2016.

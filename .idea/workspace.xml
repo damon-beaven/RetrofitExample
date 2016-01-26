@@ -13,19 +13,18 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb237ba1-e5be-4a62-81c9-7b5ac2f5b4e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAccessToken.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAccessToken.java" />
+      <change type="MOVED" beforePath="C:\gitdev\RetrofitExample\app\src\main\java\retrofitstackoverflow\android\vogella\com\retrofitexample\BASAccessToken.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAccessToken.java" />
+      <change type="MOVED" beforePath="C:\gitdev\RetrofitExample\app\src\main\java\retrofitstackoverflow\android\vogella\com\retrofitexample\BASAuthInfo.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAuthInfo.java" />
+      <change type="MOVED" beforePath="C:\gitdev\RetrofitExample\app\src\main\java\retrofitstackoverflow\android\vogella\com\retrofitexample\BaseResponse.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BaseResponse.java" />
+      <change type="MOVED" beforePath="C:\gitdev\RetrofitExample\app\src\main\java\retrofitstackoverflow\android\vogella\com\retrofitexample\Question.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Question.java" />
+      <change type="MOVED" beforePath="C:\gitdev\RetrofitExample\app\src\main\java\retrofitstackoverflow\android\vogella\com\retrofitexample\StackOverflowQuestions.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/StackOverflowQuestions.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/main_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/StackOverflowAPI.java" afterPath="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/StackOverflowAPI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RetrofitExample.iws" />
@@ -56,21 +55,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="BASCloudAPI.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="Main2Activity.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Main2Activity.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="9" column="52" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="52" />
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -80,7 +69,7 @@
             <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+                  <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -88,13 +77,223 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BaseResponse.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BaseResponse.java">
+          <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.22597402">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/build.gradle">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/build.gradle">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BASUserInfo.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASUserInfo.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#297#305#0" expanded="true" />
+                    <element signature="e#422#423#0" expanded="true" />
+                    <element signature="e#452#453#0" expanded="true" />
+                    <element signature="e#563#564#0" expanded="true" />
+                    <element signature="e#601#602#0" expanded="true" />
+                    <element signature="e#684#685#0" expanded="true" />
+                    <element signature="e#711#712#0" expanded="true" />
+                    <element signature="e#807#808#0" expanded="true" />
+                    <element signature="e#839#840#0" expanded="true" />
+                    <element signature="e#936#937#0" expanded="true" />
+                    <element signature="e#966#967#0" expanded="true" />
+                    <element signature="e#1082#1083#0" expanded="true" />
+                    <element signature="e#1120#1121#0" expanded="true" />
+                    <element signature="e#1203#1204#0" expanded="true" />
+                    <element signature="e#1230#1231#0" expanded="true" />
+                    <element signature="e#1326#1327#0" expanded="true" />
+                    <element signature="e#1358#1359#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Jawbone.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Jawbone.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#239#247#0" expanded="true" />
+                    <element signature="e#342#343#0" expanded="true" />
+                    <element signature="e#370#371#0" expanded="true" />
+                    <element signature="e#478#479#0" expanded="true" />
+                    <element signature="e#512#513#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Nest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Nest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#238#248#0" expanded="true" />
+                    <element signature="e#308#320#0" expanded="true" />
+                    <element signature="e#417#418#0" expanded="true" />
+                    <element signature="e#445#446#0" expanded="true" />
+                    <element signature="e#555#556#0" expanded="true" />
+                    <element signature="e#589#590#0" expanded="true" />
+                    <element signature="e#698#699#0" expanded="true" />
+                    <element signature="e#732#733#0" expanded="true" />
+                    <element signature="e#868#869#0" expanded="true" />
+                    <element signature="e#914#915#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Thermostat.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Thermostat.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+                  <folding>
+                    <element signature="e#404#405#0" expanded="true" />
+                    <element signature="e#429#430#0" expanded="true" />
+                    <element signature="e#519#520#0" expanded="true" />
+                    <element signature="e#547#548#0" expanded="true" />
+                    <element signature="e#638#639#0" expanded="true" />
+                    <element signature="e#668#669#0" expanded="true" />
+                    <element signature="e#778#779#0" expanded="true" />
+                    <element signature="e#816#817#0" expanded="true" />
+                    <element signature="e#901#902#0" expanded="true" />
+                    <element signature="e#928#929#0" expanded="true" />
+                    <element signature="e#1026#1027#0" expanded="true" />
+                    <element signature="e#1058#1059#0" expanded="true" />
+                    <element signature="e#1153#1154#0" expanded="true" />
+                    <element signature="e#1185#1186#0" expanded="true" />
+                    <element signature="e#1303#1304#0" expanded="true" />
+                    <element signature="e#1345#1346#0" expanded="true" />
+                    <element signature="e#1456#1457#0" expanded="true" />
+                    <element signature="e#1496#1497#0" expanded="true" />
+                    <element signature="e#1813#1814#0" expanded="true" />
+                    <element signature="e#1852#1853#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/User.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="1.2681818">
+                  <caret line="178" column="1" selection-start-line="178" selection-start-column="1" selection-end-line="178" selection-end-column="1" />
+                  <folding>
+                    <element signature="e#452#453#0" expanded="true" />
+                    <element signature="e#477#478#0" expanded="true" />
+                    <element signature="e#567#568#0" expanded="true" />
+                    <element signature="e#595#596#0" expanded="true" />
+                    <element signature="e#692#693#0" expanded="true" />
+                    <element signature="e#725#726#0" expanded="true" />
+                    <element signature="e#847#848#0" expanded="true" />
+                    <element signature="e#891#892#0" expanded="true" />
+                    <element signature="e#986#987#0" expanded="true" />
+                    <element signature="e#1018#1019#0" expanded="true" />
+                    <element signature="e#1136#1137#0" expanded="true" />
+                    <element signature="e#1178#1179#0" expanded="true" />
+                    <element signature="e#1265#1266#0" expanded="true" />
+                    <element signature="e#1293#1294#0" expanded="true" />
+                    <element signature="e#1395#1396#0" expanded="true" />
+                    <element signature="e#1429#1430#0" expanded="true" />
+                    <element signature="e#1512#1513#0" expanded="true" />
+                    <element signature="e#1538#1539#0" expanded="true" />
+                    <element signature="e#1632#1633#0" expanded="true" />
+                    <element signature="e#1662#1663#0" expanded="true" />
+                    <element signature="e#1758#1759#0" expanded="true" />
+                    <element signature="e#1790#1791#0" expanded="true" />
+                    <element signature="e#1909#1910#0" expanded="true" />
+                    <element signature="e#1951#1952#0" expanded="true" />
+                    <element signature="e#2056#2057#0" expanded="true" />
+                    <element signature="e#2093#2094#0" expanded="true" />
+                    <element signature="e#2231#2232#0" expanded="true" />
+                    <element signature="e#2283#2284#0" expanded="true" />
+                    <element signature="e#2388#2389#0" expanded="true" />
+                    <element signature="e#2425#2426#0" expanded="true" />
+                    <element signature="e#2563#2564#0" expanded="true" />
+                    <element signature="e#2615#2616#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="NestUser.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/NestUser.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#277#278#0" expanded="true" />
+                    <element signature="e#302#303#0" expanded="true" />
+                    <element signature="e#392#393#0" expanded="true" />
+                    <element signature="e#420#421#0" expanded="true" />
+                    <element signature="e#521#522#0" expanded="true" />
+                    <element signature="e#556#557#0" expanded="true" />
+                    <element signature="e#686#687#0" expanded="true" />
+                    <element signature="e#734#735#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Apps.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Apps.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+                  <folding>
+                    <element signature="e#280#281#0" expanded="true" />
+                    <element signature="e#310#311#0" expanded="true" />
+                    <element signature="e#421#422#0" expanded="true" />
+                    <element signature="e#459#460#0" expanded="true" />
+                    <element signature="e#542#543#0" expanded="true" />
+                    <element signature="e#569#570#0" expanded="true" />
+                    <element signature="e#665#666#0" expanded="true" />
+                    <element signature="e#697#698#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BaseResponse.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BaseResponse.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
                   <folding>
-                    <element signature="e#241#242#0" expanded="true" />
+                    <element signature="e#246#247#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -153,21 +352,31 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="BASAccessToken.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAccessToken.java">
+          <file leaf-file-name="BASAccessToken.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAccessToken.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.84935063">
-                  <caret line="80" column="1" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BASAuthInfo.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAuthInfo.java">
+          <file leaf-file-name="BASCloudAPI.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+                  <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BASAuthInfo.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAuthInfo.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.13181818">
+                  <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -1750,10 +1959,27 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BAseResponse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Apps.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Jawbone.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Nest.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASUserInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAccessToken.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Thermostat.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/User_.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/NestUser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAccessToken.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BaseResponse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/NestUser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Thermostat.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAuthInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASUserInfo.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Apps.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Nest.java" />
       </list>
     </option>
   </component>
@@ -1795,6 +2021,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="RetrofitExample" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1888,6 +2118,28 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="retrofitexample" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pojo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RetrofitExample" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -1904,6 +2156,12 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="HT516JT00259" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23_x86" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.WIDTH" value="637" />
+    <property name="extract.method.default.visibility" value="private" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="retrofitstackoverflow.android.vogella.com.retrofitexample.pojo" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -2085,12 +2343,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28933474" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45613107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36627907" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27906978" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2113,6 +2371,39 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45613107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27906978" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14792112" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998943" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -2130,29 +2421,16 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java</url>
-          <line>128</line>
+          <line>193</line>
           <properties />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java</url>
-          <line>116</line>
-          <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Main2Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="52" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main_menu.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2194,18 +2472,52 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAuthInfo.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BaseResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#246#247#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASAccessToken.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84935063">
-          <caret line="80" column="1" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAccessToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/Main2Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2213,7 +2525,15 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BASCloudAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASAuthInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13181818">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2221,19 +2541,175 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/BaseResponse.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/BASUserInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22597402">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
           <folding>
-            <element signature="e#241#242#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#297#305#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
+            <element signature="e#601#602#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#807#808#0" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#966#967#0" expanded="true" />
+            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1230#1231#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Apps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+          <folding>
+            <element signature="e#280#281#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Jawbone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#239#247#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#370#371#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Nest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#238#248#0" expanded="true" />
+            <element signature="e#308#320#0" expanded="true" />
+            <element signature="e#417#418#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/NestUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#521#522#0" expanded="true" />
+            <element signature="e#556#557#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#734#735#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/Thermostat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+          <folding>
+            <element signature="e#404#405#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#638#639#0" expanded="true" />
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#778#779#0" expanded="true" />
+            <element signature="e#816#817#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1345#1346#0" expanded="true" />
+            <element signature="e#1456#1457#0" expanded="true" />
+            <element signature="e#1496#1497#0" expanded="true" />
+            <element signature="e#1813#1814#0" expanded="true" />
+            <element signature="e#1852#1853#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/retrofitstackoverflow/android/vogella/com/retrofitexample/pojo/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2681818">
+          <caret line="178" column="1" selection-start-line="178" selection-start-column="1" selection-end-line="178" selection-end-column="1" />
+          <folding>
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#567#568#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#847#848#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1136#1137#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#1293#1294#0" expanded="true" />
+            <element signature="e#1395#1396#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1512#1513#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="true" />
+            <element signature="e#1632#1633#0" expanded="true" />
+            <element signature="e#1662#1663#0" expanded="true" />
+            <element signature="e#1758#1759#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1909#1910#0" expanded="true" />
+            <element signature="e#1951#1952#0" expanded="true" />
+            <element signature="e#2056#2057#0" expanded="true" />
+            <element signature="e#2093#2094#0" expanded="true" />
+            <element signature="e#2231#2232#0" expanded="true" />
+            <element signature="e#2283#2284#0" expanded="true" />
+            <element signature="e#2388#2389#0" expanded="true" />
+            <element signature="e#2425#2426#0" expanded="true" />
+            <element signature="e#2563#2564#0" expanded="true" />
+            <element signature="e#2615#2616#0" expanded="true" />
           </folding>
         </state>
       </provider>

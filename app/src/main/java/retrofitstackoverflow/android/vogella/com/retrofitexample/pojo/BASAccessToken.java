@@ -1,11 +1,11 @@
-package retrofitstackoverflow.android.vogella.com.retrofitexample;
+package retrofitstackoverflow.android.vogella.com.retrofitexample.pojo;
 
 
 public class BASAccessToken extends BaseResponse {
 
-    public String access_token;
-    public String token_type;
-    public int expires_in;
+    private String access_token;
+    private String token_type;
+    private int expires_in;
 
     /**
      *

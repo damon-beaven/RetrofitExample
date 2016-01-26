@@ -1,13 +1,14 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import retrofit.Call;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.Header;
+import retrofit.http.Headers;
 import retrofit.http.POST;
-import retrofit.http.Path;
-import retrofit.http.Query;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 
 /**
  * Created by dbeaven on 1/25/2016.
@@ -19,8 +20,9 @@ public interface BASCloudAPI {
 //    @GET("/users/{username}")
 //    Call<User> getUser(@Path("username") String username);
 //
-//    @GET("/group/{id}/users")
-//    Call<List<User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/me")
+    Call<BASUserInfo> userInfo(@Header("Authorization") String myToken);
 
     @POST("/oauth/access_token")
     @FormUrlEncoded
