@@ -10,9 +10,9 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInf
 /**
  * Created by dbeaven on 1/27/2016.
  */
-public class BASUserRead extends BASCloudTask {
+public class BASUserCreate extends BASCloudTask{
 
-    public void execute(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+    public void execute(BASAuthInfo basAuthInfo, final BASCloudTask.CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
         Call<BASUserInfo> call = mBasCloudAPI.userInfo("Bearer " + mToken.getAccess_token());

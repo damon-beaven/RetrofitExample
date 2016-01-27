@@ -33,5 +33,14 @@ public interface BASCloudAPI {
                                    @Field("email") String email,
                                    @Field("password") String password);
 
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @POST("/users")
+    @FormUrlEncoded
+    Call<BASUserInfo> userCreate(@Header("Authorization") String myToken,
+                                 @Field("password") String password,
+                                 @Field("email") String email,
+                                 @Field("first_name") String firstName,
+                                 @Field("last_name") String lastName);
+
 //    Call<BASAccessToken> loginUser(@Body BASAuthInfo user);
 }

@@ -2,7 +2,12 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
 import android.os.AsyncTask;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import retrofit.GsonConverterFactory;
 import retrofit.Response;
+import retrofit.Retrofit;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 
@@ -41,6 +46,8 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
     protected String mBaseURL = "https://dev.sensemecloud.com"; // dev
     protected static BASAccessToken mToken = new BASAccessToken();
     protected BASAuthInfo mAuthInfo = new BASAuthInfo();
+    protected Retrofit mRetrofit;
+    protected BASCloudAPI mBasCloudAPI;
 
     public CloudAsyncResponse mDelegate = null;
 
@@ -48,6 +55,35 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
      * Constructors
      */
     protected BASCloudTask() {
+//        BASAuthInfo mAuthInfo = new BASAuthInfo();
+
+//        // Define the interceptor, add authentication headers
+//        Interceptor interceptor = new Interceptor() {
+//            @Override
+//            public Response intercept(Chain chain) throws IOException {
+//                Request newRequest = chain.request().newBuilder().addHeader("User-Agent", "Retrofit-Sample-App").build();
+//                return chain.proceed(newRequest);
+//            }
+//        };
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient httpClient = new OkHttpClient();
+        // add your other interceptors
+//        httpClient.interceptors().add(interceptor);
+        // add logging as last interceptor
+        httpClient.interceptors().add(logging);  // <-- this is the important line!
+
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(mBaseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build();
+
+        // prepare call in Retrofit 2.0
+        mBasCloudAPI = mRetrofit.create(BASCloudAPI.class);
+
     }
 
 //    protected BASCloudTask(CloudAsyncResponse mDelegate){
