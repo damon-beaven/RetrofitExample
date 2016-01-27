@@ -1,4 +1,4 @@
-package retrofitstackoverflow.android.vogella.com.retrofitexample;
+package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
 import retrofit.Call;
 import retrofit.http.Field;
