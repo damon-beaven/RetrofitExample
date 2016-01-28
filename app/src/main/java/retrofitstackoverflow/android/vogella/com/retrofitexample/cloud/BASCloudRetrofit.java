@@ -71,13 +71,13 @@ private static BASCloudRetrofit instance = null;
         // prepare call in Retrofit 2.0
         BASCloudAPI basCloudAPI = retrofit.create(BASCloudAPI.class);
 
-        Call<BASAccessToken> call = basCloudAPI.loginUser(
-                basAuthInfo.client_id,
-                basAuthInfo.client_secret,
-                basAuthInfo.grant_type,
-                basAuthInfo.scope,
-                basAuthInfo.email,
-                basAuthInfo.password);
+//        Call<BASAccessToken> call = basCloudAPI.loginUser(
+//                basAuthInfo.client_id,
+//                basAuthInfo.client_secret,
+//                basAuthInfo.grant_type,
+//                basAuthInfo.scope,
+//                basAuthInfo.email,
+//                basAuthInfo.password);
         //asynchronous call
         //todo:  need to fix this next call
 //        call.enqueue(this);

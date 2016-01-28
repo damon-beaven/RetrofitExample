@@ -9,10 +9,12 @@ public class BASAuthInfo {
     public String client_id = "zdonJbObthC6sRCwGy7z7lxLS7AvrbPr7IBUdVTH";           //dev
     public String client_secret = "wE4njcvWBEWh7Nrlyn2qG8IRLHVtW8ZsImAc2WXS";       //dev
 
-    public String grant_type = "password";
-    public String scope = "read_user,write_user";
+//    public String grant_type = "password";
+//    public String scope = "read_user,write_user";
     public String email = "damon.beaven@bigasssolutions.com";       //dev
     public String password = "qwertyui";                            //dev
+    public String first_name = "Ricky";
+    public String last_name = "Bobby";
 //    public String email = "dbeaven@gmail.com";                    //production
 //    public String password = "blues2770";                         //production
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_auth"
-        android:title="Auth"
+        android:title="AuthCurrentUser"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_userInfo"
@@ -12,5 +12,25 @@
     <item
         android:id="@+id/menu_userDevices"
         android:title="UserDevices"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getCreateUserToken"
+        android:title="GetCreateUserToken"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_createUserFromToken"
+        android:title="CreateUserFromToken"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_authNewUser"
+        android:title="AuthNewUser"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getNewUserInfo"
+        android:title="GetNewUserInfo"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_deleteUser"
+        android:title="DeleteUser"
         app:showAsAction="ifRoom"/>
 </menu>

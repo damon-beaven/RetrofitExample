@@ -4,6 +4,7 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 
@@ -12,17 +13,28 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInf
  */
 public class BASUserCreate extends BASCloudTask{
 
-    public void execute(BASAuthInfo basAuthInfo, final BASCloudTask.CloudAsyncResponse delegate) {
+    public void createUserFromToken(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
-        Call<BASUserInfo> call = mBasCloudAPI.userInfo("Bearer " + mToken.getAccess_token());
+        Call<BASUserInfo> call = mBasCloudAPI.createUserFromToken(
+                "Bearer " + mToken.getAccess_token(),
+                basAuthInfo.email,
+                basAuthInfo.password,
+                basAuthInfo.first_name,
+                basAuthInfo.last_name);
 
         //asynchronous call
         call.enqueue(new Callback<BASUserInfo>() {
             @Override
             public void onResponse(Response<BASUserInfo> response,
                                    Retrofit retrofit) {
-                delegate.onCloudResponse(response);
+                //let's save that auth token for subsequent cloud calls!!
+//                if (response.body() != null) {
+//                    mToken = (BASAccessToken)response.body();
+//                }
+//                if (response.isSuccess()){
+                    delegate.onCloudResponse(response);
+//                }
             }
 
             @Override
