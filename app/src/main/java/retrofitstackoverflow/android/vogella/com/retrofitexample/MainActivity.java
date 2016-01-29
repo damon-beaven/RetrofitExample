@@ -7,12 +7,16 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import retrofit.Response;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASAuth;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermostat;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -50,6 +54,8 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        updateTitle(item.getTitle().toString());
+
         switch (item.getItemId()) {
             case R.id.menu_auth:
                 doNewAuth(basAuthInfo);
@@ -58,7 +64,7 @@ public class MainActivity extends Activity {
                 doNewUserInfo(basAuthInfo);
                 return true;
             case R.id.menu_userDevices:
-                Toast.makeText(MainActivity.this, "not implemented", Toast.LENGTH_SHORT).show();
+                doGetUserDevices(basAuthInfo);
                 return true;
             case R.id.menu_getCreateUserToken:
                 doCreateUserToken();
@@ -75,9 +81,92 @@ public class MainActivity extends Activity {
             case R.id.menu_deleteUser:
                 doDeleteUser();
                 return true;
+            case R.id.menu_getResetPasswordToken:
+                doGetPasswordResetToken();
+                return true;
+            case R.id.menu_getFirmwareDownloadToken:
+                doGetFirmwareDownloadToken();
+                return true;
+            case R.id.menu_getThermostatTypes:
+                doGetThermostatTypes(basAuthInfo);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void doGetThermostatTypes(BASAuthInfo myBasAuthInfo) {
+        BASThermostat userThermostatTypes = new BASThermostat();
+
+        userThermostatTypes.getThermostatTypes(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+//                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
+                updateTextViewFromResponse(response);
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doGetUserDevices(BASAuthInfo myBasAuthInfo) {
+        BASUser userDevices = new BASUser();
+
+        userDevices.getExistingUserDevices(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+//                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
+                updateTextViewFromResponse(response);
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doGetFirmwareDownloadToken() {
+        BASAuth userAuth = new BASAuth();
+
+        userAuth.getFirmwareDownloadToken(basNewUserAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
+                //you have to know what the object "should" be to do your cast
+                if (response.body() != null) myToken = (BASAccessToken) response.body();
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doGetPasswordResetToken() {
+        BASAuth userAuth = new BASAuth();
+
+        userAuth.getResetPasswordToken(basNewUserAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
+                //you have to know what the object "should" be to do your cast
+                if (response.body() != null) myToken = (BASAccessToken) response.body();
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
     }
 
     private void doDeleteUser() {
@@ -96,6 +185,7 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
 //                if (response.body() != null) myToken = (CloudMessage) response.body();
             }
+
             @Override
             public void onCloudError(CloudMessage message) {
                 updateTextViewFromError(message);
@@ -105,7 +195,6 @@ public class MainActivity extends Activity {
 
     private void doCreateUserToken() {
         BASAuth userAuth = new BASAuth();
-//        mBaseURL = userAuth.getBaseURL();
 
         userAuth.getCreateUserToken(basNewUserAuthInfo, new BASCloudTask.CloudAsyncResponse() {
 
@@ -115,6 +204,7 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myToken = (BASAccessToken) response.body();
             }
+
             @Override
             public void onCloudError(CloudMessage message) {
                 updateTextViewFromError(message);
@@ -133,6 +223,7 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
             }
+
             @Override
             public void onCloudError(CloudMessage message) {
                 updateTextViewFromError(message);
@@ -148,7 +239,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCloudResponse(Response response) {
-//                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
                 updateTextViewFromResponse(response);
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myToken = (BASAccessToken) response.body();
@@ -174,11 +264,18 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myUserInfo = (BASUserInfo) response.body();
             }
+
             @Override
             public void onCloudError(CloudMessage message) {
                 updateTextViewFromError(message);
             }
         });
+    }
+
+    private void updateTitle(String title) {
+        TextView myTitle = (TextView) findViewById(R.id.textTitle);
+
+        myTitle.setText(title);
     }
 
     private void updateTextView(String text, String text2) {
@@ -196,7 +293,6 @@ public class MainActivity extends Activity {
         }
         else {
             updateTextView(returncodeString + mBaseURL, response.message() + response.errorBody());
-//            updateTextView(returncodeString + mBaseURL, response.errorBody().toString());
         }
     }
 

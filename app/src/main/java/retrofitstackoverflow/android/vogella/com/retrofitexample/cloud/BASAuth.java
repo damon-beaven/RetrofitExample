@@ -84,4 +84,68 @@ public class BASAuth extends BASCloudTask { //implements Callback<BASAccessToken
             }
         });
     }
+
+    public void getResetPasswordToken(final BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<BASAccessToken> call = mBasCloudAPI.getResetPasswordToken(
+                basAuthInfo.client_id,
+                basAuthInfo.client_secret,
+                "client_credentials",
+                "reset_password");
+
+        //asynchronous call
+        call.enqueue(new Callback<BASAccessToken>() {
+            @Override
+            public void onResponse(Response<BASAccessToken> response,
+                                   Retrofit retrofit) {
+                //let's save that auth token for subsequent cloud calls!!
+                if (goodResponse(response)) {
+                    mToken = (BASAccessToken)response.body();
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void getFirmwareDownloadToken(final BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<BASAccessToken> call = mBasCloudAPI.getFirmwareDownloadToken(
+                basAuthInfo.client_id,
+                basAuthInfo.client_secret,
+                "client_credentials",
+                "firmware");
+
+        //asynchronous call
+        call.enqueue(new Callback<BASAccessToken>() {
+            @Override
+            public void onResponse(Response<BASAccessToken> response,
+                                   Retrofit retrofit) {
+                //let's save that auth token for subsequent cloud calls!!
+                if (goodResponse(response)) {
+                    mToken = (BASAccessToken)response.body();
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
 }

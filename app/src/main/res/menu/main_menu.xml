@@ -11,7 +11,11 @@
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_userDevices"
-        android:title="UserDevices"
+        android:title="getUserDevices (deprecated?)"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getThermostatTypes"
+        android:title="GetThermostatTypes"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_getCreateUserToken"
@@ -33,4 +37,13 @@
         android:id="@+id/menu_deleteUser"
         android:title="DeleteUser"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getResetPasswordToken"
+        android:title="GetResetPasswordToken"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getFirmwareDownloadToken"
+        android:title="GetFirmwareDownloadToken"
+        app:showAsAction="ifRoom"/>
+
 </menu>

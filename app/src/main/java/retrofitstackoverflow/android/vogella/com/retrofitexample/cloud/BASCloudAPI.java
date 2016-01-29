@@ -10,6 +10,8 @@ import retrofit.http.Headers;
 import retrofit.http.POST;
 import retrofit.http.Path;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -25,7 +27,19 @@ public interface BASCloudAPI {
 //
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/me")
-    Call<BASUserInfo> userInfo(@Header("Authorization") String myToken);
+    Call<BASUserInfo> getUserInfo(@Header("Authorization") String myToken);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/devices")
+    Call<BASDevices> getUserDevices(@Header("Authorization") String myToken);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/thermostats/types")
+    Call<BASThermostatTypes> getThermostatTypes(@Header("Authorization") String myToken);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/thermostats")
+    Call<BASThermostatTypes> getUserThermostats(@Header("Authorization") String myToken);
 
     @POST("/oauth/access_token")
     @FormUrlEncoded
@@ -38,10 +52,25 @@ public interface BASCloudAPI {
 
     @POST("/oauth/access_token")
     @FormUrlEncoded
+    Call<BASAccessToken> getResetPasswordToken(@Field("client_id") String clientId,
+                                               @Field("client_secret") String clientSecret,
+                                               @Field("grant_type") String grantType,
+                                               @Field("scope") String scope);
+
+    @POST("/oauth/access_token")
+    @FormUrlEncoded
     Call<BASAccessToken> getCreateUserToken(@Field("client_id") String clientId,
                                    @Field("client_secret") String clientSecret,
                                    @Field("grant_type") String grantType,
                                    @Field("scope") String scope);
+
+    @POST("/oauth/access_token")
+    @FormUrlEncoded
+    Call<BASAccessToken> getFirmwareDownloadToken(@Field("client_id") String clientId,
+                                            @Field("client_secret") String clientSecret,
+                                            @Field("grant_type") String grantType,
+                                            @Field("scope") String scope);
+
 
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/users")
@@ -52,7 +81,12 @@ public interface BASCloudAPI {
                                              @Field("first_name") String firstName,
                                              @Field("last_name") String lastName);
 
-
+    // You can't actually create a user with just one call
+    // but eventually we'd like BASCloudTask/BASCloudUser to expose
+    // a single interface that will get the token and create the user
+    // with just one method call.
+    // Would like to do the same for any operation that requires
+    // more than one single REST API.
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/users")
     @FormUrlEncoded

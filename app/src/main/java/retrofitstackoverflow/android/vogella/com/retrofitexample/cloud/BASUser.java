@@ -4,8 +4,8 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -49,12 +49,66 @@ public class BASUser extends BASCloudTask{
     public void getExistingUserInfo(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
-        Call<BASUserInfo> call = mBasCloudAPI.userInfo("Bearer " + mToken.getAccess_token());
+        Call<BASUserInfo> call = mBasCloudAPI.getUserInfo("Bearer " + mToken.getAccess_token());
 
         //asynchronous call
         call.enqueue(new Callback<BASUserInfo>() {
             @Override
             public void onResponse(Response<BASUserInfo> response,
+                                   Retrofit retrofit) {
+
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void getExistingUserDevices(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<BASDevices> call = mBasCloudAPI.getUserDevices("Bearer " + mToken.getAccess_token());
+
+        //asynchronous call
+        call.enqueue(new Callback<BASDevices>() {
+            @Override
+            public void onResponse(Response<BASDevices> response,
+                                   Retrofit retrofit) {
+
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void getExistingUserThermostats(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<BASDevices> call = mBasCloudAPI.getUserDevices("Bearer " + mToken.getAccess_token());
+
+        //asynchronous call
+        call.enqueue(new Callback<BASDevices>() {
+            @Override
+            public void onResponse(Response<BASDevices> response,
                                    Retrofit retrofit) {
 
                 if (goodResponse(response)) {
