@@ -17,7 +17,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 /**
  * Created by dbeaven on 1/27/2016.
  */
-public class BASUserAuth extends BASCloudTask { //implements Callback<BASAccessToken> {
+public class BASAuth extends BASCloudTask { //implements Callback<BASAccessToken> {
 
     public void loginExistingUser(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
@@ -36,25 +36,13 @@ public class BASUserAuth extends BASCloudTask { //implements Callback<BASAccessT
             public void onResponse(Response<BASAccessToken> response,
                                    Retrofit retrofit) {
 
-                CloudMessage cloudMessage = new CloudMessage();
-
                 //let's save that auth token for subsequent cloud calls!!
-                if (response.body() != null) {
-                    mToken = (BASAccessToken)response.body();
+                if (goodResponse(response)) {
+                    mToken = (BASAccessToken) response.body();
+                    handleGoodResponse(response, delegate);
+                } else {
+                    handleErrorResponse(response, delegate);
                 }
-                else {
-                    Converter<ResponseBody, CloudMessage> converter =
-                            mRetrofit.responseConverter(CloudMessage.class, new Annotation[0]);
-                    try {
-                        cloudMessage = converter.convert(response.errorBody());
-                    } catch (IOException e) {
-                        ;
-                    }
-                }
-
-                cloudMessage.toString();
-
-                delegate.onCloudResponse(response);
             }
 
             @Override
@@ -80,10 +68,13 @@ public class BASUserAuth extends BASCloudTask { //implements Callback<BASAccessT
             public void onResponse(Response<BASAccessToken> response,
                                    Retrofit retrofit) {
                 //let's save that auth token for subsequent cloud calls!!
-                if (response.body() != null) {
+                if (goodResponse(response)) {
                     mToken = (BASAccessToken)response.body();
+                    handleGoodResponse(response, delegate);
                 }
-                delegate.onCloudResponse(response);
+                else {
+                    handleErrorResponse(response, delegate);
+                }
             }
 
             @Override

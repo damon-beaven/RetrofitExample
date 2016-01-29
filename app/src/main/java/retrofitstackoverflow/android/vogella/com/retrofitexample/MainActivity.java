@@ -9,10 +9,8 @@ import android.widget.Toast;
 
 import retrofit.Response;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUserAuth;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUserCreate;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUserDelete;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUserRead;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASAuth;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
@@ -83,7 +81,7 @@ public class MainActivity extends Activity {
     }
 
     private void doDeleteUser() {
-        BASUserDelete userDelete = new BASUserDelete();
+        BASUser userDelete = new BASUser();
 
         if (basNewUserAuthInfo == null) {
             Toast.makeText(MainActivity.this, "Create user first", Toast.LENGTH_LONG).show();
@@ -98,11 +96,15 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
 //                if (response.body() != null) myToken = (CloudMessage) response.body();
             }
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
         });
     }
 
     private void doCreateUserToken() {
-        BASUserAuth userAuth = new BASUserAuth();
+        BASAuth userAuth = new BASAuth();
 //        mBaseURL = userAuth.getBaseURL();
 
         userAuth.getCreateUserToken(basNewUserAuthInfo, new BASCloudTask.CloudAsyncResponse() {
@@ -113,11 +115,15 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myToken = (BASAccessToken) response.body();
             }
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
         });
     }
 
     private void doCreateUserFromToken() {
-        BASUserCreate userCreate = new BASUserCreate();
+        BASUser userCreate = new BASUser();
 
         userCreate.createUserFromToken(basNewUserAuthInfo, new BASCloudTask.CloudAsyncResponse() {
 
@@ -127,11 +133,15 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
             }
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
         });
     }
 
     private void doNewAuth(BASAuthInfo basAuthInfo) {
-        BASUserAuth userAuth = new BASUserAuth();
+        BASAuth userAuth = new BASAuth();
         mBaseURL = userAuth.getBaseURL();
 
         userAuth.loginExistingUser(basAuthInfo, new BASCloudTask.CloudAsyncResponse() {
@@ -143,11 +153,16 @@ public class MainActivity extends Activity {
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myToken = (BASAccessToken) response.body();
             }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
         });
     }
 
     private void doNewUserInfo(BASAuthInfo myBasAuthInfo) {
-        BASUserRead userRead = new BASUserRead();
+        BASUser userRead = new BASUser();
         mBaseURL = userRead.getBaseURL();
 
         userRead.getExistingUserInfo(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
@@ -158,6 +173,10 @@ public class MainActivity extends Activity {
                 updateTextViewFromResponse(response);
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myUserInfo = (BASUserInfo) response.body();
+            }
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
             }
         });
     }
@@ -179,5 +198,9 @@ public class MainActivity extends Activity {
             updateTextView(returncodeString + mBaseURL, response.message() + response.errorBody());
 //            updateTextView(returncodeString + mBaseURL, response.errorBody().toString());
         }
+    }
+
+    private void updateTextViewFromError(CloudMessage message) {
+        updateTextView(failureString + mBaseURL, message.toString());
     }
 }

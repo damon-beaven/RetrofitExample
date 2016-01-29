@@ -4,10 +4,10 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.pojo;
  * Created by dbeaven on 1/28/2016.
  */
 public class CloudMessage {
-    private String success;
-    private String message;
-    private String status_code;
-    private String code;
+    public String success;
+    public String message;
+    public String status_code;
+    public String code;
 
     @Override
     public String toString() {
