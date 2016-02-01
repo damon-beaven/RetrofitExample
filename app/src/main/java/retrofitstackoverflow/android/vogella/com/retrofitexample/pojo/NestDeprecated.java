@@ -6,17 +6,17 @@ import java.util.List;
 /**
  * Created by dbeaven on 1/26/2016.
  */
-public class Nest {
+public class NestDeprecated {
 
-    private List<NestUser> users = new ArrayList<NestUser>();
-    private List<Thermostat> thermostats = new ArrayList<Thermostat>();
+    private List<NestUserDeprecated> users = new ArrayList<NestUserDeprecated>();
+    private List<ThermostatDeprecated> thermostatDeprecateds = new ArrayList<ThermostatDeprecated>();
 
     /**
      *
      * @return
      * The users
      */
-    public List<NestUser> getUsers() {
+    public List<NestUserDeprecated> getUsers() {
         return users;
     }
 
@@ -25,26 +25,26 @@ public class Nest {
      * @param users
      * The users
      */
-    public void setUsers(List<NestUser> users) {
+    public void setUsers(List<NestUserDeprecated> users) {
         this.users = users;
     }
 
     /**
      *
      * @return
-     * The thermostats
+     * The thermostatDeprecateds
      */
-    public List<Thermostat> getThermostats() {
-        return thermostats;
+    public List<ThermostatDeprecated> getThermostatDeprecateds() {
+        return thermostatDeprecateds;
     }
 
     /**
      *
-     * @param thermostats
-     * The thermostats
+     * @param thermostatDeprecateds
+     * The thermostatDeprecateds
      */
-    public void setThermostats(List<Thermostat> thermostats) {
-        this.thermostats = thermostats;
+    public void setThermostatDeprecateds(List<ThermostatDeprecated> thermostatDeprecateds) {
+        this.thermostatDeprecateds = thermostatDeprecateds;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Nest {
 
         result.append(this.getClass().getSimpleName() + " Object {" + NEWLINE);
         if (users != null) result.append(" users: " + users.toString() + NEWLINE);
-        if (thermostats != null) result.append(" thermostats: " + thermostats.toString() + NEWLINE);
+        if (thermostatDeprecateds != null) result.append(" thermostatDeprecateds: " + thermostatDeprecateds.toString() + NEWLINE);
         result.append("}");
 
         return result.toString();

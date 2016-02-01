@@ -7,10 +7,10 @@ public class Thermostat_type {
 
     private String id;
     private String name;
-    private String description;
-    private String site_url;
-    private String created_at_utc;
-    private String updated_at_utc;
+    private String description;     //getUserThermostats doesn't return this field
+    private String site_url;        //getUserThermostats doesn't return this field
+    private String created_at_utc;  //getUserThermostats doesn't return this field
+    private String updated_at_utc;  //getUserThermostats doesn't return this field
 
     /**
      *

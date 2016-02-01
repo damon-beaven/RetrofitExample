@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 import retrofit.Response;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASAuth;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASFirmware;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermostat;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
@@ -42,6 +43,10 @@ public class MainActivity extends Activity {
         basNewUserAuthInfo.password = "qwertyui";
         basNewUserAuthInfo.first_name = "Ricky";
         basNewUserAuthInfo.last_name = "Bobby";
+
+        BASAuth tempUserAuth = new BASAuth();
+        mBaseURL = tempUserAuth.getBaseURL();
+
         setContentView(R.layout.activity_main);
     }
 
@@ -66,6 +71,12 @@ public class MainActivity extends Activity {
             case R.id.menu_userDevices:
                 doGetUserDevices(basAuthInfo);
                 return true;
+            case R.id.menu_userThermostats:
+                doGetUserThermostats(basAuthInfo);
+                return true;
+            case R.id.menu_userThermostatsLinkedDevices:
+                doGetUserThermostatsLinkedDevices(basAuthInfo);
+                return true;
             case R.id.menu_getCreateUserToken:
                 doCreateUserToken();
                 return true;
@@ -78,6 +89,9 @@ public class MainActivity extends Activity {
             case R.id.menu_getNewUserInfo:
                 doNewUserInfo(basNewUserAuthInfo);
                 return true;
+            case R.id.menu_updateNewUserInfo:
+                doUpdateUserInfo(basNewUserAuthInfo);
+                return true;
             case R.id.menu_deleteUser:
                 doDeleteUser();
                 return true;
@@ -86,6 +100,9 @@ public class MainActivity extends Activity {
                 return true;
             case R.id.menu_getFirmwareDownloadToken:
                 doGetFirmwareDownloadToken();
+                return true;
+            case R.id.menu_getFirmwareDownloadUrlFromToken:
+                doGetFirmwareDownloadUrlFromToken();
                 return true;
             case R.id.menu_getThermostatTypes:
                 doGetThermostatTypes(basAuthInfo);
@@ -96,9 +113,9 @@ public class MainActivity extends Activity {
     }
 
     private void doGetThermostatTypes(BASAuthInfo myBasAuthInfo) {
-        BASThermostat userThermostatTypes = new BASThermostat();
+        BASThermostat thermostatTypes = new BASThermostat();
 
-        userThermostatTypes.getThermostatTypes(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+        thermostatTypes.getThermostatTypes(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
 
             @Override
             public void onCloudResponse(Response response) {
@@ -113,6 +130,7 @@ public class MainActivity extends Activity {
         });
     }
 
+    //Deprecated?
     private void doGetUserDevices(BASAuthInfo myBasAuthInfo) {
         BASUser userDevices = new BASUser();
 
@@ -120,7 +138,40 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCloudResponse(Response response) {
-//                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
+                updateTextViewFromResponse(response);
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doGetUserThermostats(BASAuthInfo myBasAuthInfo) {
+        BASUser userDevices = new BASUser();
+
+        userDevices.getExistingUserThermostats(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doGetUserThermostatsLinkedDevices(BASAuthInfo myBasAuthInfo) {
+        BASUser userDevices = new BASUser();
+
+        userDevices.getExistingUserThermostatsLinkedDevices(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
                 updateTextViewFromResponse(response);
             }
 
@@ -141,6 +192,25 @@ public class MainActivity extends Activity {
                 updateTextViewFromResponse(response);
                 //you have to know what the object "should" be to do your cast
                 if (response.body() != null) myToken = (BASAccessToken) response.body();
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doGetFirmwareDownloadUrlFromToken() {
+        BASFirmware getFirmware = new BASFirmware();
+
+        getFirmware.getFirmwareDownloadUrlFromToken(basNewUserAuthInfo,
+                "FW000003",
+                new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
             }
 
             @Override
@@ -233,7 +303,6 @@ public class MainActivity extends Activity {
 
     private void doNewAuth(BASAuthInfo basAuthInfo) {
         BASAuth userAuth = new BASAuth();
-        mBaseURL = userAuth.getBaseURL();
 
         userAuth.loginExistingUser(basAuthInfo, new BASCloudTask.CloudAsyncResponse() {
 
@@ -253,7 +322,6 @@ public class MainActivity extends Activity {
 
     private void doNewUserInfo(BASAuthInfo myBasAuthInfo) {
         BASUser userRead = new BASUser();
-        mBaseURL = userRead.getBaseURL();
 
         userRead.getExistingUserInfo(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
 
@@ -262,7 +330,55 @@ public class MainActivity extends Activity {
 //                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
                 updateTextViewFromResponse(response);
                 //you have to know what the object "should" be to do your cast
-                if (response.body() != null) myUserInfo = (BASUserInfo) response.body();
+                if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
+    private void doUpdateUserInfo(BASAuthInfo authInfo) {
+        BASUser userUpdate = new BASUser();
+        Boolean bError = false;
+
+        if (basNewUserInfo == null) {
+            bError = true;
+        }
+        else if (basNewUserInfo.getUser() == null) {
+            bError = true;
+        }
+        else if (basNewUserInfo.getUser().getId() == null) {
+            bError = true;
+        }
+
+        if (bError) {
+            Toast.makeText(MainActivity.this, "User info is null.  Get user info first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        // this will allow us to just keep switching the name back and forth
+        if (authInfo.last_name == "Ricky") {
+            authInfo.first_name = "Richard";
+            authInfo.last_name = "Robert";
+        }
+        else {
+            authInfo.first_name = "Ricky";
+            authInfo.last_name = "Bobby";
+        }
+
+        userUpdate.updateExistingUser(authInfo,
+                basNewUserInfo.getUser().getId(),   //the id of the user we just created
+                new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
+                //you have to know what the object "should" be to do your cast
+                if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
             }
 
             @Override

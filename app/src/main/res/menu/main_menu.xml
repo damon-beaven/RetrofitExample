@@ -18,6 +18,14 @@
         android:title="GetThermostatTypes"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/menu_userThermostats"
+        android:title="getUserThermostats"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_userThermostatsLinkedDevices"
+        android:title="getUserThermostatsLinkedDevices"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/menu_getCreateUserToken"
         android:title="GetCreateUserToken"
         app:showAsAction="ifRoom"/>
@@ -34,6 +42,10 @@
         android:title="GetNewUserInfo"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/menu_updateNewUserInfo"
+        android:title="UpdateNewUserInfo"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/menu_deleteUser"
         android:title="DeleteUser"
         app:showAsAction="ifRoom"/>
@@ -44,6 +56,10 @@
     <item
         android:id="@+id/menu_getFirmwareDownloadToken"
         android:title="GetFirmwareDownloadToken"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getFirmwareDownloadUrlFromToken"
+        android:title="GetFirmwareDownloadUrlFromToken"
         app:showAsAction="ifRoom"/>
 
 </menu>

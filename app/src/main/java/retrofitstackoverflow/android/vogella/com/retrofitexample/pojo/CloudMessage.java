@@ -8,6 +8,7 @@ public class CloudMessage {
     public String message;
     public String status_code;
     public String code;
+//    public String errors; //need to create object with all possible responses
 
     @Override
     public String toString() {
@@ -19,6 +20,7 @@ public class CloudMessage {
         if (message != null) result.append(" message: " + message.toString() + NEWLINE);
         if (status_code != null) result.append(" status_code: " + status_code.toString() + NEWLINE);
         if (code != null) result.append(" code: " + code.toString() + NEWLINE);
+//        if (errors != null) result.append(" errors: " + errors.toString() + NEWLINE);
         result.append("}");
 
         return result.toString();

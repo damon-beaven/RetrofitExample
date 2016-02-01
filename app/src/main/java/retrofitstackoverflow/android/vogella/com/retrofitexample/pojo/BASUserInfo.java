@@ -11,7 +11,7 @@ public class BASUserInfo {
     private Boolean success;
     private User user;
     private List<Object> devices = new ArrayList<Object>();
-    private Apps apps;
+    private AppsDeprecated appsDeprecated;
 
     /**
      *
@@ -70,19 +70,19 @@ public class BASUserInfo {
     /**
      *
      * @return
-     * The apps
+     * The appsDeprecated
      */
-    public Apps getApps() {
-        return apps;
+    public AppsDeprecated getAppsDeprecated() {
+        return appsDeprecated;
     }
 
     /**
      *
-     * @param apps
-     * The apps
+     * @param appsDeprecated
+     * The appsDeprecated
      */
-    public void setApps(Apps apps) {
-        this.apps = apps;
+    public void setAppsDeprecated(AppsDeprecated appsDeprecated) {
+        this.appsDeprecated = appsDeprecated;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BASUserInfo {
         result.append(" success: " + success + NEWLINE);
         if (user != null) result.append(" user: " + user.toString() + NEWLINE);
         if (devices != null) result.append(" devices: " + devices.toString() + NEWLINE);
-        if (apps != null) result.append(" apps: " + apps.toString() + NEWLINE);
+        if (appsDeprecated != null) result.append(" appsDeprecated: " + appsDeprecated.toString() + NEWLINE);
         result.append("}");
 
         return result.toString();

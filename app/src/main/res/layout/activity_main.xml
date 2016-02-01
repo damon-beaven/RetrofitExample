@@ -27,16 +27,29 @@
         android:layout_alignParentStart="true"
         android:paddingTop="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Small"
-        android:text="The full response will show here"
-        android:id="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView2"
-        android:paddingTop="10dp" />
+    <ScrollView
+        android:id="@+id/responseScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        android:layout_below="@+id/textView2">
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignEnd="@+id/textTitle">-->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:text="The full response will show here"
+            android:id="@+id/textView"
+            android:paddingTop="10dp" />
+    </ScrollView>
+    <!-- from id=textView
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textView2"
+    -->
 
 </RelativeLayout>

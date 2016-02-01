@@ -1,6 +1,7 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
 import retrofit.Call;
+import retrofit.http.Body;
 import retrofit.http.DELETE;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -8,10 +9,15 @@ import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.Headers;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
+import retrofit.http.Query;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASFirmwareInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostats;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatsLinkedDevicesInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -39,7 +45,11 @@ public interface BASCloudAPI {
 
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/thermostats")
-    Call<BASThermostatTypes> getUserThermostats(@Header("Authorization") String myToken);
+    Call<BASThermostats> getUserThermostats(@Header("Authorization") String myToken);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/thermostats/links")
+    Call<BASThermostatsLinkedDevicesInfo> getUserThermostatsLinkedDevices(@Header("Authorization") String myToken);
 
     @POST("/oauth/access_token")
     @FormUrlEncoded
@@ -81,20 +91,56 @@ public interface BASCloudAPI {
                                              @Field("first_name") String firstName,
                                              @Field("last_name") String lastName);
 
-    // You can't actually create a user with just one call
+    //each @Field is optional...@Path userID is required
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @PUT("/users/{user_id}")
+    @FormUrlEncoded
+    Call<BASUserInfo> updateUserFromId(@Header("Authorization") String myToken,
+                                       @Path("user_id") String userID,
+                                       @Field("email") String email,
+                                       @Field("password") String password,
+                                       @Field("first_name") String firstName,
+                                       @Field("last_name") String lastName);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/firmware")
+    Call<BASFirmwareInfo> getFirmwareDownloadUrlFromToken(@Header("Authorization") String myToken,
+                                                     @Query("firmware_key") String fwKey);
+
+    // todo: You can't actually create a user with just one call
     // but eventually we'd like BASCloudTask/BASCloudUser to expose
     // a single interface that will get the token and create the user
     // with just one method call.
     // Would like to do the same for any operation that requires
     // more than one single REST API.
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
-    @POST("/users")
-    @FormUrlEncoded
-    Call<BASUserInfo> userCreate(@Header("Authorization") String myToken,
-                                 @Field("password") String password,
-                                 @Field("email") String email,
-                                 @Field("first_name") String firstName,
-                                 @Field("last_name") String lastName);
+    // getCreateUserToken
+    // createUserFromToken
+//    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+//    @POST("/users")
+//    @FormUrlEncoded
+//    Call<BASUserInfo> userCreate(@Header("Authorization") String myToken,
+//                                 @Field("password") String password,
+//                                 @Field("email") String email,
+//                                 @Field("first_name") String firstName,
+//                                 @Field("last_name") String lastName);
+
+    // todo: You can't actually update a user with just one call
+    // but eventually we'd like BASCloudTask/BASCloudUser to expose
+    // a single interface that will get the token and update the user
+    // with just one method call.
+    // Would like to do the same for any operation that requires
+    // more than one single REST API.
+    // loginUser (for the bearer token)
+    // getUserInfo (for the user ID)
+    // updateUserFromToken (do I need to get an actual update token? NO...we can use the login bearer token.)
+//    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+//    @POST("/users")
+//    @FormUrlEncoded
+//    Call<BASUserInfo> userUpdate(@Header("Authorization") String myToken,
+//                                 @Field("password") String password,
+//                                 @Field("email") String email,
+//                                 @Field("first_name") String firstName,
+//                                 @Field("last_name") String lastName);
 
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @DELETE("/users/{user_id}")

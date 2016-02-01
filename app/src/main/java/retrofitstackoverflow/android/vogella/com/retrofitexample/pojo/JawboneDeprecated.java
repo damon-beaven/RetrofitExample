@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by dbeaven on 1/26/2016.
  */
-public class Jawbone {
+public class JawboneDeprecated {
 
     private List<Object> users = new ArrayList<Object>();
 
