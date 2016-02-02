@@ -18,6 +18,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASFirmwar
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostats;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatsLinkedDevicesInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -29,7 +30,7 @@ public interface BASCloudAPI {
     // Callback for the parsed response is the last parameter
 
 //    @GET("/users/{username}")
-//    Call<User> getUser(@Path("username") String username);
+//    Call<User> getUserConfirmation(@Path("username") String username);
 //
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/me")
@@ -91,7 +92,9 @@ public interface BASCloudAPI {
                                              @Field("first_name") String firstName,
                                              @Field("last_name") String lastName);
 
-    //each @Field is optional...@Path userID is required
+    // each @Field is optional on the cloud side, but we use them all
+    // so we don't have to parse to figure out what was changed.
+    // @Path userID is required
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @PUT("/users/{user_id}")
     @FormUrlEncoded
@@ -102,6 +105,41 @@ public interface BASCloudAPI {
                                        @Field("first_name") String firstName,
                                        @Field("last_name") String lastName);
 
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @PUT("/users/confirm")
+    @FormUrlEncoded
+    Call<BASUserConfirmInfo> confirmUserFromPin(@Header("Authorization") String myToken,
+                                       @Field("email") String email,
+                                       @Field("pin") String pin);
+
+
+    // get create_user token
+    // create the user (registration)
+    // getNewPinEmail
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @POST("/users/pin")
+    @FormUrlEncoded
+    Call<CloudMessage> getNewPinEmail(@Header("Authorization") String myToken,
+                                            @Field("email") String email);
+
+    // get getResetPasswordToken for reset_password token
+    // call getPasswordEmail with reset_password token
+    // call confirmUserFromPin with email and pin
+    // call resetUserPassword with email, pin, reset_token (from confirmUserFromPin), password
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @POST("/users/pin")
+    @FormUrlEncoded
+    Call<CloudMessage> getResetPasswordEmail(@Header("Authorization") String myToken,
+                                      @Field("email") String email);
+
+    // Supported FW keys
+    //    Old GS1011 Haiku 	    FW000003 	3
+    //    Haiku Wall Control 	FW000004 	4
+    //    Haiku L Series 	    FW000005 	5
+    //    Haiku Light 	        FW000006 	6
+    //    Haiku H/I Series 	    FW000007 	7
+    // source:
+    // file:///C:/gitdev/controls/doc/Big%20Ass%20Solutions%20Wi-Fi%20Ecosystem%20Protocol%20Specification.html
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/firmware")
     Call<BASFirmwareInfo> getFirmwareDownloadUrlFromToken(@Header("Authorization") String myToken,
@@ -149,4 +187,8 @@ public interface BASCloudAPI {
                                  @Path("user_id") String userID);
 
 //    Call<BASAccessToken> loginUser(@Body BASAuthInfo user);
+    //create user
+    // get create user token
+    // create user
+    // confirm user
 }

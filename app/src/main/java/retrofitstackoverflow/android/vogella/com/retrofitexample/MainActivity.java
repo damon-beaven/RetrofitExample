@@ -18,6 +18,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -39,7 +40,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set up another user so we can add/delete/etc
-        basNewUserAuthInfo.email = "rickyfirst@notlast.com";
+//        basNewUserAuthInfo.email = "rickyfirst@notlast.com";
+        basNewUserAuthInfo.email = "damon.beaven@bigasssolutions.com";       //dev
         basNewUserAuthInfo.password = "qwertyui";
         basNewUserAuthInfo.first_name = "Ricky";
         basNewUserAuthInfo.last_name = "Bobby";
@@ -83,8 +85,14 @@ public class MainActivity extends Activity {
             case R.id.menu_authNewUser:
                 doNewAuth(basNewUserAuthInfo);
                 return true;
+            case R.id.menu_getNewPinEmail:
+                doGetNewPinEmail();
+                return true;
             case R.id.menu_createUserFromToken:
                 doCreateUserFromToken();
+                return true;
+            case R.id.menu_confirmUserFromPin:
+                doConfirmUserFromPin();
                 return true;
             case R.id.menu_getNewUserInfo:
                 doNewUserInfo(basNewUserAuthInfo);
@@ -97,6 +105,9 @@ public class MainActivity extends Activity {
                 return true;
             case R.id.menu_getResetPasswordToken:
                 doGetPasswordResetToken();
+                return true;
+            case R.id.menu_getResetPasswordEmail:
+                doGetPasswordResetEmail();
                 return true;
             case R.id.menu_getFirmwareDownloadToken:
                 doGetFirmwareDownloadToken();
@@ -134,7 +145,7 @@ public class MainActivity extends Activity {
     private void doGetUserDevices(BASAuthInfo myBasAuthInfo) {
         BASUser userDevices = new BASUser();
 
-        userDevices.getExistingUserDevices(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+        userDevices.getExistingUserDevices(new BASCloudTask.CloudAsyncResponse() {
 
             @Override
             public void onCloudResponse(Response response) {
@@ -151,7 +162,7 @@ public class MainActivity extends Activity {
     private void doGetUserThermostats(BASAuthInfo myBasAuthInfo) {
         BASUser userDevices = new BASUser();
 
-        userDevices.getExistingUserThermostats(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+        userDevices.getExistingUserThermostats(new BASCloudTask.CloudAsyncResponse() {
 
             @Override
             public void onCloudResponse(Response response) {
@@ -168,7 +179,7 @@ public class MainActivity extends Activity {
     private void doGetUserThermostatsLinkedDevices(BASAuthInfo myBasAuthInfo) {
         BASUser userDevices = new BASUser();
 
-        userDevices.getExistingUserThermostatsLinkedDevices(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+        userDevices.getExistingUserThermostatsLinkedDevices(new BASCloudTask.CloudAsyncResponse() {
 
             @Override
             public void onCloudResponse(Response response) {
@@ -208,16 +219,16 @@ public class MainActivity extends Activity {
                 "FW000003",
                 new BASCloudTask.CloudAsyncResponse() {
 
-            @Override
-            public void onCloudResponse(Response response) {
-                updateTextViewFromResponse(response);
-            }
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                    }
 
-            @Override
-            public void onCloudError(CloudMessage message) {
-                updateTextViewFromError(message);
-            }
-        });
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
     }
 
     private void doGetPasswordResetToken() {
@@ -239,6 +250,51 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void doGetPasswordResetEmail() {
+        BASUser userPasswordReset = new BASUser();
+
+        if (basNewUserInfo.getUser() == null) {
+            Toast.makeText(MainActivity.this, "Need to get user info first", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        userPasswordReset.getResetPasswordEmail(basNewUserInfo.getUser().getEmail(),
+                new BASCloudTask.CloudAsyncResponse() {
+
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                    }
+
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
+    }
+
+    private void doGetNewPinEmail() {
+        BASUser userNewPin = new BASUser();
+
+        if (basNewUserInfo.getUser() == null) {
+            Toast.makeText(MainActivity.this, "Need to get user info first", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        userNewPin.getNewPinEmail(basNewUserInfo.getUser().getEmail(), new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
     private void doDeleteUser() {
         BASUser userDelete = new BASUser();
 
@@ -247,13 +303,16 @@ public class MainActivity extends Activity {
             return;
         }
 
-        userDelete.deleteExistingUser(basNewUserInfo, new BASCloudTask.CloudAsyncResponse() {
+        if (basNewUserInfo.getUser() == null) {
+            Toast.makeText(MainActivity.this, "Need to get user info first", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        userDelete.deleteExistingUser(basNewUserInfo.getUser().getId(), new BASCloudTask.CloudAsyncResponse() {
 
             @Override
             public void onCloudResponse(Response response) {
                 updateTextViewFromResponse(response);
-                //you have to know what the object "should" be to do your cast
-//                if (response.body() != null) myToken = (CloudMessage) response.body();
             }
 
             @Override
@@ -301,6 +360,27 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void doConfirmUserFromPin() {
+        BASUser userConfirm = new BASUser();
+
+        userConfirm.confirmUserFromPin(basNewUserAuthInfo,
+                basNewUserInfo.getUser().getPin(),
+                new BASCloudTask.CloudAsyncResponse() {
+
+            @Override
+            public void onCloudResponse(Response response) {
+                updateTextViewFromResponse(response);
+                //you have to know what the object "should" be to do your cast
+//                if (response.body() != null) basNewUserInfo = (BASUserConfirmInfo) response.body();
+            }
+
+            @Override
+            public void onCloudError(CloudMessage message) {
+                updateTextViewFromError(message);
+            }
+        });
+    }
+
     private void doNewAuth(BASAuthInfo basAuthInfo) {
         BASAuth userAuth = new BASAuth();
 
@@ -323,7 +403,7 @@ public class MainActivity extends Activity {
     private void doNewUserInfo(BASAuthInfo myBasAuthInfo) {
         BASUser userRead = new BASUser();
 
-        userRead.getExistingUserInfo(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
+        userRead.getExistingUserInfo(new BASCloudTask.CloudAsyncResponse() {
 
             @Override
             public void onCloudResponse(Response response) {
@@ -361,7 +441,7 @@ public class MainActivity extends Activity {
 
 
         // this will allow us to just keep switching the name back and forth
-        if (authInfo.last_name == "Ricky") {
+        if (authInfo.first_name == "Ricky") {
             authInfo.first_name = "Richard";
             authInfo.last_name = "Robert";
         }

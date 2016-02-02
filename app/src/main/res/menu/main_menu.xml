@@ -5,6 +5,13 @@
         android:id="@+id/menu_auth"
         android:title="AuthCurrentUser"
         app:showAsAction="ifRoom"/>
+    <!--<menu>-->
+        <!--<item-->
+            <!--android:id="@+id/testmenu"-->
+            <!--android:title="testmenu"-->
+            <!--app:showAsAction="ifRoom"/>-->
+
+    <!--</menu>-->
     <item
         android:id="@+id/menu_userInfo"
         android:title="UserInfo"
@@ -34,8 +41,16 @@
         android:title="CreateUserFromToken"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/menu_confirmUserFromPin"
+        android:title="ConfirmUserFromPin"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/menu_authNewUser"
         android:title="AuthNewUser"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getNewPinEmail"
+        android:title="GetNewPinEmail"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_getNewUserInfo"
@@ -52,6 +67,10 @@
     <item
         android:id="@+id/menu_getResetPasswordToken"
         android:title="GetResetPasswordToken"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_getResetPasswordEmail"
+        android:title="GetResetPasswordEmail"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_getFirmwareDownloadToken"

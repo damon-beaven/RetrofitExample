@@ -9,7 +9,7 @@ public class User {
     private String first_name;
     private String last_name;
     private String email;
-    private Object pin;
+    private Integer pin;
     private Boolean confirmed;
     private String updated_at_utc;
     private String created_at_utc;
@@ -91,7 +91,7 @@ public class User {
      * @return
      * The pin
      */
-    public Object getPin() {
+    public Integer getPin() {
         return pin;
     }
 
@@ -100,7 +100,7 @@ public class User {
      * @param pin
      * The pin
      */
-    public void setPin(Object pin) {
+    public void setPin(Integer pin) {
         this.pin = pin;
     }
 
@@ -168,7 +168,7 @@ public class User {
         result.append(" first_name: " + first_name + NEWLINE);
         result.append(" last_name: " + last_name + NEWLINE);
         result.append(" email: " + email + NEWLINE);
-        result.append(" pin: " + pin + NEWLINE);
+        if (pin != null) result.append(" pin: " + pin.toString() + NEWLINE);
         result.append(" confirmed: " + confirmed + NEWLINE);
         result.append(" updated_at_utc: " + updated_at_utc + NEWLINE);
         result.append(" created_at_utc: " + created_at_utc + NEWLINE);

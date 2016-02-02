@@ -13,8 +13,8 @@ public class BASAuthInfo {
 //    public String scope = "read_user,write_user";
     public String email = "damon.beaven@bigasssolutions.com";       //dev
     public String password = "qwertyui";                            //dev
-    public String first_name = "Ricky";
-    public String last_name = "Bobby";
+    public String first_name = "Damon";
+    public String last_name = "Beaven";
 //    public String email = "dbeaven@gmail.com";                    //production
 //    public String password = "blues2770";                         //production
 }

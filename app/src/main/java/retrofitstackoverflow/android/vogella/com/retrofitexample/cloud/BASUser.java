@@ -8,6 +8,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInf
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostats;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatsLinkedDevicesInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
@@ -15,6 +16,36 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
  * Created by dbeaven on 1/27/2016.
  */
 public class BASUser extends BASCloudTask{
+
+    public void confirmUserFromPin(BASAuthInfo basAuthInfo, Integer userPin, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<BASUserConfirmInfo> call = mBasCloudAPI.confirmUserFromPin(
+                "Bearer " + mToken.getAccess_token(),
+                basAuthInfo.email,
+                userPin.toString());
+
+        //asynchronous call
+        call.enqueue(new Callback<BASUserConfirmInfo>() {
+            @Override
+            public void onResponse(Response<BASUserConfirmInfo> response,
+                                   Retrofit retrofit) {
+                //let's save that auth token for subsequent cloud calls!!
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
 
     public void createUserFromToken(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
@@ -48,7 +79,7 @@ public class BASUser extends BASCloudTask{
         });
     }
 
-    public void getExistingUserInfo(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+    public void getExistingUserInfo(final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
         Call<BASUserInfo> call = mBasCloudAPI.getUserInfo("Bearer " + mToken.getAccess_token());
@@ -76,7 +107,7 @@ public class BASUser extends BASCloudTask{
     }
 
     //Deprecated?
-    public void getExistingUserDevices(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+    public void getExistingUserDevices(final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
         Call<BASDevices> call = mBasCloudAPI.getUserDevices("Bearer " + mToken.getAccess_token());
@@ -103,7 +134,7 @@ public class BASUser extends BASCloudTask{
         });
     }
 
-    public void getExistingUserThermostats(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+    public void getExistingUserThermostats(final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
         Call<BASThermostats> call = mBasCloudAPI.getUserThermostats("Bearer " + mToken.getAccess_token());
@@ -130,7 +161,7 @@ public class BASUser extends BASCloudTask{
         });
     }
 
-    public void getExistingUserThermostatsLinkedDevices(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+    public void getExistingUserThermostatsLinkedDevices(final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
         Call<BASThermostatsLinkedDevicesInfo> call = mBasCloudAPI.getUserThermostatsLinkedDevices("Bearer " + mToken.getAccess_token());
@@ -195,12 +226,70 @@ public class BASUser extends BASCloudTask{
         });
     }
 
-    public void deleteExistingUser(BASUserInfo basUserInfo, final CloudAsyncResponse delegate) {
+    public void getResetPasswordEmail(String userEmail, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<CloudMessage> call = mBasCloudAPI.getResetPasswordEmail(
+                "Bearer " + mToken.getAccess_token(),
+                userEmail);
+
+        //asynchronous call
+        call.enqueue(new Callback<CloudMessage>() {
+            @Override
+            public void onResponse(Response<CloudMessage> response,
+                                   Retrofit retrofit) {
+
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void getNewPinEmail(String userEmail, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<CloudMessage> call = mBasCloudAPI.getNewPinEmail(
+                "Bearer " + mToken.getAccess_token(),
+                userEmail);
+
+        //asynchronous call
+        call.enqueue(new Callback<CloudMessage>() {
+            @Override
+            public void onResponse(Response<CloudMessage> response,
+                                   Retrofit retrofit) {
+
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void deleteExistingUser(String userID, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
 
         Call<CloudMessage> call = mBasCloudAPI.userDelete(
                 "Bearer " + mToken.getAccess_token(),
-                basUserInfo.getUser().getId());
+                userID);
 
         //asynchronous call
         call.enqueue(new Callback<CloudMessage>() {

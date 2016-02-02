@@ -49,7 +49,7 @@ gen/
 
 # User-specific files
 *.suo
-*.user
+*.userConfirmation
 *.sln.docstates
 
 # Build results
