@@ -1,13 +1,17 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import retrofit.Response;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
@@ -17,13 +21,13 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermo
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
 public class MainActivity extends Activity {
+    private enum LoginType {BAFUSER, NESTUSER, ECOBEEUSER};
     private String mBaseURL;
+    private Integer mPinFromEmail;
     private String successString = "Success...>> ";
     private String failureString = "Failure...>> ";
     private String returncodeString = "Return code...>> ";
@@ -92,7 +96,8 @@ public class MainActivity extends Activity {
                 doCreateUserFromToken();
                 return true;
             case R.id.menu_confirmUserFromPin:
-                doConfirmUserFromPin();
+                showPinDialog();
+                //doConfirmUserFromPin();
                 return true;
             case R.id.menu_getNewUserInfo:
                 doNewUserInfo(basNewUserAuthInfo);
@@ -108,6 +113,12 @@ public class MainActivity extends Activity {
                 return true;
             case R.id.menu_getResetPasswordEmail:
                 doGetPasswordResetEmail();
+                return true;
+            case R.id.menu_getEnteredPinForconfirmUserFromPin:
+                showPinDialog();
+                return true;
+            case R.id.menu_resetPasswordFromResetToken:
+                doResetPasswordFromResetToken();
                 return true;
             case R.id.menu_getFirmwareDownloadToken:
                 doGetFirmwareDownloadToken();
@@ -273,6 +284,29 @@ public class MainActivity extends Activity {
                 });
     }
 
+    private void doResetPasswordFromResetToken() {
+        BASUser userPasswordReset = new BASUser();
+
+        if (basNewUserInfo.getUser() == null) {
+            Toast.makeText(MainActivity.this, "Need to get user info first", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        userPasswordReset.resetUserPasswordFromResetToken(basNewUserAuthInfo,
+                new BASCloudTask.CloudAsyncResponse() {
+
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                    }
+
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
+    }
+
     private void doGetNewPinEmail() {
         BASUser userNewPin = new BASUser();
 
@@ -364,21 +398,20 @@ public class MainActivity extends Activity {
         BASUser userConfirm = new BASUser();
 
         userConfirm.confirmUserFromPin(basNewUserAuthInfo,
-                basNewUserInfo.getUser().getPin(),
+//                basNewUserInfo.getUser().getPin(),
+                mPinFromEmail,
                 new BASCloudTask.CloudAsyncResponse() {
 
-            @Override
-            public void onCloudResponse(Response response) {
-                updateTextViewFromResponse(response);
-                //you have to know what the object "should" be to do your cast
-//                if (response.body() != null) basNewUserInfo = (BASUserConfirmInfo) response.body();
-            }
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                    }
 
-            @Override
-            public void onCloudError(CloudMessage message) {
-                updateTextViewFromError(message);
-            }
-        });
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
     }
 
     private void doNewAuth(BASAuthInfo basAuthInfo) {
@@ -454,18 +487,18 @@ public class MainActivity extends Activity {
                 basNewUserInfo.getUser().getId(),   //the id of the user we just created
                 new BASCloudTask.CloudAsyncResponse() {
 
-            @Override
-            public void onCloudResponse(Response response) {
-                updateTextViewFromResponse(response);
-                //you have to know what the object "should" be to do your cast
-                if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
-            }
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                        //you have to know what the object "should" be to do your cast
+                        if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
+                    }
 
-            @Override
-            public void onCloudError(CloudMessage message) {
-                updateTextViewFromError(message);
-            }
-        });
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
     }
 
     private void updateTitle(String title) {
@@ -495,4 +528,103 @@ public class MainActivity extends Activity {
     private void updateTextViewFromError(CloudMessage message) {
         updateTextView(failureString + mBaseURL, message.toString());
     }
+
+    private void setPinInput(String myPin) {
+        try {
+            mPinFromEmail = Integer.parseInt(myPin);
+            doConfirmUserFromPin();
+        } catch (NumberFormatException nfe) {
+            Toast.makeText(MainActivity.this, "Pin was not a number.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void showPinDialog() {
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        final View pinView = inflater.inflate(R.layout.enter_pin, null);
+        final EditText pinInput = (EditText) pinView.findViewById(R.id.pinFromEmail);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Enter PIN");
+        builder.setView(pinView);
+        builder.setCancelable(false);
+
+        builder.setPositiveButton(
+                "Save",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        String pinValue;
+                        pinValue = pinInput.getText().toString();
+                        setPinInput(pinValue);
+                        dialog.dismiss();
+                    }
+                });
+
+        builder.setNegativeButton(
+                "Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void setUserPasswordInput(LoginType myLoginType, String myUser, String myPassword) {
+        doConfirmUserFromPin();
+        switch (myLoginType) {
+            case BAFUSER: {
+                break;
+            }
+            case NESTUSER: {
+                break;
+            }
+            case ECOBEEUSER: {
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+
+    private void showUserLoginDialog(final LoginType myLoginType) {
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        final View pinView = inflater.inflate(R.layout.enter_user_password, null);
+        final EditText userInput = (EditText) pinView.findViewById(R.id.usernameText);
+        final EditText passwordInput = (EditText) pinView.findViewById(R.id.passwordText);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Enter PIN");
+        builder.setView(pinView);
+        builder.setCancelable(false);
+
+        builder.setPositiveButton(
+                "Save",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        setUserPasswordInput(myLoginType,
+                                userInput.getText().toString(),
+                                passwordInput.getText().toString());
+                        dialog.dismiss();
+                    }
+                });
+
+        builder.setNegativeButton(
+                "Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+}
 }

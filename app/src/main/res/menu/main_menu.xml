@@ -73,6 +73,14 @@
         android:title="GetResetPasswordEmail"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/menu_getEnteredPinForconfirmUserFromPin"
+        android:title="GetEnteredPinForConfirmUserFromPin"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_resetPasswordFromResetToken"
+        android:title="ResetPasswordFromResetToken"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/menu_getFirmwareDownloadToken"
         android:title="GetFirmwareDownloadToken"
         app:showAsAction="ifRoom"/>

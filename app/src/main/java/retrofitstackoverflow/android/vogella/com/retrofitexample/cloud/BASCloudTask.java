@@ -15,6 +15,7 @@ import retrofit.Response;
 import retrofit.Retrofit;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
 /**
@@ -50,8 +51,21 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
 
     //    private String mBaseURL = "https://api.bigassfans.com";  // production
     protected String mBaseURL = "https://dev.sensemecloud.com"; // dev
+
+    /////////////////////////////////////////////////////////////////////////////
+    //NOTE:  Any static members are intentional.  This allows the abstract base
+    // class to act as a conduit for derived classes to "share" information.
+    // This could be a problem if we were to try to work with two different user
+    // accounts at the same time.  Information like access tokens, PINs, etc. could
+    // be overwritten causing failures with cloud communications.
     protected static BASAccessToken mToken = new BASAccessToken();
-    protected BASAuthInfo mAuthInfo = new BASAuthInfo();
+    protected static BASUserConfirmInfo mConfirmInfo = new BASUserConfirmInfo(); // set in confirmUserFromPin()
+                                                                                 // used in getResetPasswordEmail()
+    protected static String mPasswordResetPin; // if we have seen a password reset pin we will hold it
+                                               // for the subsequent password reset call.
+    protected static BASAuthInfo mAuthInfo = new BASAuthInfo();
+    /////////////////////////////////////////////////////////////////////////////
+
     protected Retrofit mRetrofit;
     protected BASCloudAPI mBasCloudAPI;
 

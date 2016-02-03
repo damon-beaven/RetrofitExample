@@ -9,6 +9,20 @@ public class CloudMessage {
     public String status_code;
     public String code;
 //    public String errors; //need to create object with all possible responses
+//    "errors": {
+//        "email": [
+//        "The email field is required."
+//        ],
+//        "pin": [
+//        "The pin field is required."
+//        ],
+//        "reset_token": [
+//        "The reset token field is required."
+//        ],
+//        "password": [
+//        "The password field is required."
+//        ]
+//    {"email":["The email format is invalid."]}
 
     @Override
     public String toString() {

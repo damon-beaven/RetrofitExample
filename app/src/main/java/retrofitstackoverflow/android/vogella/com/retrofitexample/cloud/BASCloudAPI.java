@@ -105,6 +105,10 @@ public interface BASCloudAPI {
                                        @Field("first_name") String firstName,
                                        @Field("last_name") String lastName);
 
+    // get create_user token from getCreateUserToken
+    // confirmUserFromPin
+    // will get a 32 char UUID (reset_token)
+    // you will need the reset_token if you want to reset the password
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @PUT("/users/confirm")
     @FormUrlEncoded
@@ -112,6 +116,14 @@ public interface BASCloudAPI {
                                        @Field("email") String email,
                                        @Field("pin") String pin);
 
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @PUT("/users/password")
+    @FormUrlEncoded
+    Call<CloudMessage> resetUserPasswordFromResetToken(@Header("Authorization") String myToken,
+                                                @Field("email") String email,
+                                                @Field("pin") String pin,
+                                                @Field("reset_token") String resetToken,
+                                                @Field("password") String password);
 
     // get create_user token
     // create the user (registration)
@@ -131,6 +143,43 @@ public interface BASCloudAPI {
     @FormUrlEncoded
     Call<CloudMessage> getResetPasswordEmail(@Header("Authorization") String myToken,
                                       @Field("email") String email);
+
+
+//========================not yet implemented
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @POST("/thermostats")
+    @FormUrlEncoded
+    Call<CloudMessage> createThermostat(@Header("Authorization") String myToken,
+                                        @Field("thermostats_type_id") String thermostatTypeId,
+                                        @Field("authorization_code") String authorizationCode);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @DELETE("/thermostats/{token_id}")
+//    @FormUrlEncoded
+    Call<CloudMessage> deleteThermostat(@Header("Authorization") String myToken,
+                                        @Path("token_id") String tokenID);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @POST("/thermostats/links")
+    @FormUrlEncoded
+    Call<CloudMessage> linkThermostatToDevice(@Header("Authorization") String myToken,
+                                              @Field("device_id") String deviceID,
+                                              @Field("thermostat_id") String thermostatID);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @GET("/thermostats/links")
+    @FormUrlEncoded
+    Call<CloudMessage> getThermostatLinks(@Header("Authorization") String myToken,
+                                              @Field("device_id") String deviceID,
+                                              @Field("thermostat_id") String thermostatID);
+
+    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+    @DELETE("/thermostats/links/{thermostat_id}/{device_id}")
+//    @FormUrlEncoded
+    Call<CloudMessage> deleteThermostatLinkToDevice(@Header("Authorization") String myToken,
+                                                    @Path("thermostat_id") String thermostatID,
+                                                    @Path("device_id") String deviceID);
+//========================not yet implemented
 
     // Supported FW keys
     //    Old GS1011 Haiku 	    FW000003 	3

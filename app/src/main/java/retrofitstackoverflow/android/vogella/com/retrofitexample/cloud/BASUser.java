@@ -19,11 +19,12 @@ public class BASUser extends BASCloudTask{
 
     public void confirmUserFromPin(BASAuthInfo basAuthInfo, Integer userPin, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
+        mPasswordResetPin = userPin.toString(); // we keep this for later
 
         Call<BASUserConfirmInfo> call = mBasCloudAPI.confirmUserFromPin(
                 "Bearer " + mToken.getAccess_token(),
                 basAuthInfo.email,
-                userPin.toString());
+                mPasswordResetPin);
 
         //asynchronous call
         call.enqueue(new Callback<BASUserConfirmInfo>() {
@@ -32,6 +33,7 @@ public class BASUser extends BASCloudTask{
                                    Retrofit retrofit) {
                 //let's save that auth token for subsequent cloud calls!!
                 if (goodResponse(response)) {
+                    mConfirmInfo = (BASUserConfirmInfo)response.body();
                     handleGoodResponse(response, delegate);
                 }
                 else {
@@ -254,6 +256,39 @@ public class BASUser extends BASCloudTask{
             }
         });
     }
+
+    public void resetUserPasswordFromResetToken(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<CloudMessage> call = mBasCloudAPI.resetUserPasswordFromResetToken(
+                "Bearer " + mToken.getAccess_token(),
+                basAuthInfo.email,
+                mPasswordResetPin,
+                mConfirmInfo.getUserConfirmation().getResetToken(),
+                basAuthInfo.password);
+
+        //asynchronous call
+        call.enqueue(new Callback<CloudMessage>() {
+            @Override
+            public void onResponse(Response<CloudMessage> response,
+                                   Retrofit retrofit) {
+                //let's save that auth token for subsequent cloud calls!!
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
 
     public void getNewPinEmail(String userEmail, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
