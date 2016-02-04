@@ -20,8 +20,10 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"></activity>
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+        <activity
+            android:name=".NestAuthActivity"
+            android:label="@string/title_activity_nest_auth"></activity>
     </application>
 
-</manifest>
-    <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
+</manifest> <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->

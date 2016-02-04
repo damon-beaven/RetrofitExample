@@ -88,5 +88,17 @@
         android:id="@+id/menu_getFirmwareDownloadUrlFromToken"
         android:title="GetFirmwareDownloadUrlFromToken"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_loginBAS"
+        android:title="loginBAS"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_loginNest"
+        android:title="loginNest"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_loginEcobee"
+        android:title="loginEcobee"
+        app:showAsAction="ifRoom"/>
 
 </menu>

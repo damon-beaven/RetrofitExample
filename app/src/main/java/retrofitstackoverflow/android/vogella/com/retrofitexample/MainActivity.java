@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,11 +22,13 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermo
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
 
 public class MainActivity extends Activity {
-    private enum LoginType {BAFUSER, NESTUSER, ECOBEEUSER};
+    private enum LoginType {BASUSER, NESTUSER, ECOBEEUSER};
     private String mBaseURL;
     private Integer mPinFromEmail;
     private String successString = "Success...>> ";
@@ -33,6 +36,12 @@ public class MainActivity extends Activity {
     private String returncodeString = "Return code...>> ";
     protected BASAccessToken myToken = new BASAccessToken();
     protected BASUserInfo myUserInfo = new BASUserInfo();
+    private NestAuthInfo myNestAuthInfo = NestAuthInfo.getInstance();
+    private final static int NEST_LOGIN_ACTIVITY = 1;
+    private final static int ECOBEE_LOGIN_ACTIVITY = 2;
+
+    //thermostat stuff
+    private BASThermostatTypes myThermostatTypes= new BASThermostatTypes();
 
     //new user stuff
     private BASAuthInfo basAuthInfo = new BASAuthInfo();
@@ -129,6 +138,15 @@ public class MainActivity extends Activity {
             case R.id.menu_getThermostatTypes:
                 doGetThermostatTypes(basAuthInfo);
                 return true;
+            case R.id.menu_loginBAS:
+//                doGetThermostatTypes();
+                return true;
+            case R.id.menu_loginNest:
+                doNestLogin();
+                return true;
+            case R.id.menu_loginEcobee:
+//                doGetThermostatTypes(basAuthInfo);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -141,7 +159,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCloudResponse(Response response) {
-//                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
+                //you have to know what the object "should" be to do your cast
+                if (response.body() != null) myThermostatTypes = (BASThermostatTypes) response.body();
                 updateTextViewFromResponse(response);
             }
 
@@ -501,6 +520,30 @@ public class MainActivity extends Activity {
                 });
     }
 
+    private void doNestLogin() {
+        Intent intent = new Intent(this, NestAuthActivity.class);
+        startActivityForResult(intent, NEST_LOGIN_ACTIVITY);
+        //now we should have the nest access token to add it to the BAS account
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case NEST_LOGIN_ACTIVITY:
+                if (myNestAuthInfo.accessToken != "")
+                {
+                    Toast.makeText(MainActivity.this, "Nest access token=" + myNestAuthInfo.accessToken, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Failed to get Next access token", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case ECOBEE_LOGIN_ACTIVITY:
+                //you just got back from activity C - deal with resultCode
+                break;
+        }
+    }
+
     private void updateTitle(String title) {
         TextView myTitle = (TextView) findViewById(R.id.textTitle);
 
@@ -576,12 +619,13 @@ public class MainActivity extends Activity {
     private void setUserPasswordInput(LoginType myLoginType, String myUser, String myPassword) {
         doConfirmUserFromPin();
         switch (myLoginType) {
-            case BAFUSER: {
+            case BASUSER: {
                 break;
             }
-            case NESTUSER: {
-                break;
-            }
+            // Nest doesn't log in this way...use NestAuthActivity
+//            case NESTUSER: {
+//                break;
+//            }
             case ECOBEEUSER: {
                 break;
             }
@@ -626,5 +670,4 @@ public class MainActivity extends Activity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-}
 }

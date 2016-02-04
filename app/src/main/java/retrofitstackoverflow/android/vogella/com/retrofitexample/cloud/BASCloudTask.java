@@ -24,14 +24,14 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 
     //  Implementation in the parent class should look something like this
     //  NOTE:  "implements AsyncResponse"
-    //         "processFinish()..."
+    //         "goodResponse()..."
     //          Call the task normally with ".execute();"
 //public class MainActivity implements AsyncResponse{
 //
 //    BASCloudTash asyncTask =new BASCloudTask(new AsyncResponse(){
 //
 //        @Override
-//        void processFinish(String output){
+//        void goodResponse(String output){
 //            //Here you will receive the result fired from async class
 //            //of onPostExecute(result) method.
 //        }
@@ -139,25 +139,8 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
         }
     }
 
-//    protected BASCloudTask(CloudAsyncResponse mDelegate){
-//        this.mDelegate = mDelegate;
-//    }
-
-    // This is how the caller will get the result of the operation
-    // The calling class should "implements" CloudAsyncResponse and  the proper "@Override" will
-    // be called when the process is done.  Hence, the parent gets the "result"
-    // onCloudResponse - successful request
-    // onCloudError - something went wrong, check the message
     public interface CloudAsyncResponse {
         void onCloudResponse(Response response);
         void onCloudError(CloudMessage message);
     }
-
-//    public abstract void onResponse(Response response);
-
-//    @Override
-//    protected void onCloudResponse(Response response) {
-//        // callback to the parent class to send the result
-//        mDelegate.onCloudResponse(response);
-//    }
 }

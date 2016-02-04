@@ -17,7 +17,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 /**
  * Created by dbeaven on 1/27/2016.
  */
-public class BASAuth extends BASCloudTask { //implements Callback<BASAccessToken> {
+public class BASAuth extends BASCloudTask {
 
     public void loginExistingUser(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
