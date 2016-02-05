@@ -26,7 +26,7 @@ public class NestAuthActivity extends Activity {
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        if (nestAuthInfo.accessToken == "") {
+        if (nestAuthInfo.authCode == "") {
 
             // need to get access token with OAuth2.0
             //...
@@ -34,27 +34,26 @@ public class NestAuthActivity extends Activity {
             webview.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    //...
                     if ( url.startsWith(nestAuthInfo.redirectUrl) ) {
 
                         // extract OAuth2 access_token appended in url
                         if ( url.indexOf("code=") != -1 ) {
                             Uri myUri = Uri.parse(url);
                             String stateToken = myUri.getQueryParameter("state");
-                            String authToken = myUri.getQueryParameter("code");
+                            String authCode = myUri.getQueryParameter("code");
                             // here I could do some checking on state and code
                             // to make sure they are valid and that auth was granted
-                            nestAuthInfo.accessToken = authToken;
+                            nestAuthInfo.authCode = authCode;
 
-//                            nestAuthInfo.accessToken = mExtractToken(url);
+//                            nestAuthInfo.authCode = mExtractToken(url);
 
 //                            // store in default SharedPreferences
 //                            Editor e = getPreferences(Context.MODE_PRIVATE).edit();
-//                            e.putString(SHPREF_KEY_ACCESS_TOKEN, accessToken);
+//                            e.putString(SHPREF_KEY_ACCESS_TOKEN, authCode);
 //                            e.commit();
 //
 //                            // spawn worker thread to do api calls to get list of contacts to display
-//                            new MyWebservicesAsyncTask().execute(accessToken);
+//                            new MyWebservicesAsyncTask().execute(authCode);
                             finishActivity();
                         }
 
@@ -72,11 +71,9 @@ public class NestAuthActivity extends Activity {
             webview.loadUrl(authorizationUri);
 
         }
-//        else {
-//
-//            // have access token, so spawn worker thread to do api calls to get list of contacts to display
-//            new MyWebservicesAsyncTask().execute(accessToken);
-//        }
+        else {
+            // we already have access token just exit
+            finishActivity();
+        }
     }
-
 }

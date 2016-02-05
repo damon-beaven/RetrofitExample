@@ -3,6 +3,7 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.pojo;
 /**
  * Created by dbeaven on 2/4/2016.
  */
+// This is a singleton b/c we should only ever need to auth to one Nest account.
 public class NestAuthInfo {
     private static NestAuthInfo instance = null;
 
@@ -16,7 +17,6 @@ public class NestAuthInfo {
         }
         return instance;
     }
-
 
     //production
 //    public String client_id = "3420ad89-0f07-42a9-b3d0-b25a83906812";
@@ -57,6 +57,8 @@ public class NestAuthInfo {
     //I got this with the code...
     //https://senseme.redirect/?state=FOO&code=MKGTGJKEXQYL4M7M
 
-    public String accessToken = "";
+    //We get this from the Nest OAuth redirect URL.  They pass it back to us after the user
+    //logs in and grants access to their Nest account.
+    public String authCode = "";
 
 }

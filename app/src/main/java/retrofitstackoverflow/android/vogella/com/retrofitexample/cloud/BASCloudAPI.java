@@ -150,7 +150,7 @@ public interface BASCloudAPI {
     @POST("/thermostats")
     @FormUrlEncoded
     Call<CloudMessage> createThermostat(@Header("Authorization") String myToken,
-                                        @Field("thermostats_type_id") String thermostatTypeId,
+                                        @Field("thermostat_type_id") String thermostatTypeId,
                                         @Field("authorization_code") String authorizationCode);
 
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})

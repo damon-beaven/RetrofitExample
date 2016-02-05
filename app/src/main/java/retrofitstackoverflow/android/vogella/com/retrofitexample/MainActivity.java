@@ -2,7 +2,6 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -530,12 +529,14 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(requestCode) {
             case NEST_LOGIN_ACTIVITY:
-                if (myNestAuthInfo.accessToken != "")
+                if (myNestAuthInfo.authCode != "")
                 {
-                    Toast.makeText(MainActivity.this, "Nest access token=" + myNestAuthInfo.accessToken, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Nest access token=" + myNestAuthInfo.authCode, Toast.LENGTH_LONG).show();
+                    updateTextView(successString + mBaseURL, "authCode=" + myNestAuthInfo.authCode);
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Failed to get Next access token", Toast.LENGTH_LONG).show();
+                    updateTextView(failureString + mBaseURL, "authCode=" + myNestAuthInfo.authCode);
                 }
                 break;
             case ECOBEE_LOGIN_ACTIVITY:
