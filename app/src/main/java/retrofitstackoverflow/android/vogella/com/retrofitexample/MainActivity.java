@@ -24,6 +24,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInf
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.EcobeeAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
 
 public class MainActivity extends Activity {
@@ -36,6 +37,7 @@ public class MainActivity extends Activity {
     protected BASAccessToken myToken = new BASAccessToken();
     protected BASUserInfo myUserInfo = new BASUserInfo();
     private NestAuthInfo myNestAuthInfo = NestAuthInfo.getInstance();
+    private EcobeeAuthInfo myEcobeeAuthInfo = EcobeeAuthInfo.getInstance();
     private final static int NEST_LOGIN_ACTIVITY = 1;
     private final static int ECOBEE_LOGIN_ACTIVITY = 2;
 
@@ -144,7 +146,7 @@ public class MainActivity extends Activity {
                 doNestLogin();
                 return true;
             case R.id.menu_loginEcobee:
-//                doGetThermostatTypes(basAuthInfo);
+                doEcobeeLogin();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -159,7 +161,8 @@ public class MainActivity extends Activity {
             @Override
             public void onCloudResponse(Response response) {
                 //you have to know what the object "should" be to do your cast
-                if (response.body() != null) myThermostatTypes = (BASThermostatTypes) response.body();
+                if (response.body() != null)
+                    myThermostatTypes = (BASThermostatTypes) response.body();
                 updateTextViewFromResponse(response);
             }
 
@@ -522,7 +525,13 @@ public class MainActivity extends Activity {
     private void doNestLogin() {
         Intent intent = new Intent(this, NestAuthActivity.class);
         startActivityForResult(intent, NEST_LOGIN_ACTIVITY);
-        //now we should have the nest access token to add it to the BAS account
+        //when we exit the activity we should have the nest access token to add it to the BAS account
+    }
+
+    private void doEcobeeLogin() {
+        Intent intent = new Intent(this, EcobeeAuthActivity.class);
+        startActivityForResult(intent, ECOBEE_LOGIN_ACTIVITY);
+        //when we exit the activity we should have the ecobee access token to add it to the BAS account
     }
 
     @Override
@@ -535,12 +544,23 @@ public class MainActivity extends Activity {
                     updateTextView(successString + mBaseURL, "authCode=" + myNestAuthInfo.authCode);
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Failed to get Next access token", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Failed to get Nest access token", Toast.LENGTH_LONG).show();
                     updateTextView(failureString + mBaseURL, "authCode=" + myNestAuthInfo.authCode);
                 }
                 break;
             case ECOBEE_LOGIN_ACTIVITY:
-                //you just got back from activity C - deal with resultCode
+                if (myEcobeeAuthInfo.authCode != "")
+                {
+                    Toast.makeText(MainActivity.this, "ecobee access token=" + myEcobeeAuthInfo.authCode, Toast.LENGTH_LONG).show();
+                    updateTextView(successString + mBaseURL, "authCode=" + myEcobeeAuthInfo.authCode);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Failed to get ecobee access token", Toast.LENGTH_LONG).show();
+                    updateTextView(failureString + mBaseURL, "authCode=" + myEcobeeAuthInfo.authCode);
+                }
+                break;
+            default:
+                Toast.makeText(MainActivity.this, "Unknown login processed in switch statement", Toast.LENGTH_LONG).show();
                 break;
         }
     }

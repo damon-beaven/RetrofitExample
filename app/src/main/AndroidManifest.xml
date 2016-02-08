@@ -23,7 +23,10 @@
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
         <activity
             android:name=".NestAuthActivity"
-            android:label="@string/title_activity_nest_auth"></activity>
+            android:label="@string/title_activity_nest_auth" />
+        <activity
+            android:name=".EcobeeAuthActivity"
+            android:label="@string/title_activity_ecobee_auth"></activity>
     </application>
 
 </manifest> <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->

@@ -7,11 +7,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.EcobeeAuthInfo;
 
-public class NestAuthActivity extends Activity {
+public class EcobeeAuthActivity extends Activity {
 
-    private NestAuthInfo nestAuthInfo = NestAuthInfo.getInstance(); //singleton so we can share auth token
+    private EcobeeAuthInfo ecobeeAuthInfo = EcobeeAuthInfo.getInstance(); //singleton so we can share auth token
     private WebView webview;
 
     protected void finishActivity() {
@@ -21,12 +21,12 @@ public class NestAuthActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nest_auth);
+        setContentView(R.layout.activity_ecobee_auth);
         webview = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        if (nestAuthInfo.authCode == "") {
+        if (ecobeeAuthInfo.authCode == "") {
 
             // need to get access token with OAuth2.0
             //...
@@ -34,7 +34,7 @@ public class NestAuthActivity extends Activity {
             webview.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if ( url.startsWith(nestAuthInfo.SENSEME_REDIRECT_URL) ) {
+                    if ( url.startsWith(ecobeeAuthInfo.SENSEME_REDIRECT_URL) ) {
 
                         // extract OAuth2 access_token appended in url
                         if ( url.indexOf("code=") != -1 ) {
@@ -43,7 +43,7 @@ public class NestAuthActivity extends Activity {
                             String authCode = myUri.getQueryParameter("code");
                             // here I could do some checking on state and code
                             // to make sure they are valid and that auth was granted
-                            nestAuthInfo.authCode = authCode;
+                            ecobeeAuthInfo.authCode = authCode;
 
                             finishActivity();
                         }
@@ -58,7 +58,7 @@ public class NestAuthActivity extends Activity {
             });
 
             // do OAuth2 login
-            String authorizationUri = nestAuthInfo.LOGIN_URL;
+            String authorizationUri = ecobeeAuthInfo.LOGIN_URL;
             webview.loadUrl(authorizationUri);
 
         }

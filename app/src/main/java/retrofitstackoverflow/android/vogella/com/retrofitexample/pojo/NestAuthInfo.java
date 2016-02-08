@@ -26,7 +26,6 @@ public class NestAuthInfo {
 //    <string name="NEST_API_SECRET" translatable="false">MGYE5QNFxyzcHJ2znKmpBbffC</string>
 //    <string name="ECOBEE_API_KEY" translatable="false">1Y7P5EnTSfLXNOaoMMcXneCAXNnK5Dtq</string>
 
-
 //example URLs
     //public final static String NEST_LOGIN_URL =
             // "https://home.nest.com/login/oauth2?client_id=3420ad89-0f07-42a9-b3d0-b25a83906812&state=STATE";
@@ -43,12 +42,16 @@ public class NestAuthInfo {
     //    &client_secret=your_nest_api_client_secret
     //    &grant_type=authorization_code
 
-    //dev
-    public String client_id = "9e9c8fe4-34db-418a-83bb-d837d57a01fd";
-    public String client_secret = "Iv7vuCYkJ8qrOWW9tnmG5fMZX";
-    public String loginUrl =
+    //constants
+    public final static String SENSEME_REDIRECT_URL = "https://senseme.redirect";
+    public final static String NEST_THERMOSTAT_TYPE_ID					= "329ec0b2-c598-4ce5-8cf1-41efb0631e1a";
+
+    //dev constants
+    public final static String client_id = "9e9c8fe4-34db-418a-83bb-d837d57a01fd";
+    public final static String client_secret = "Iv7vuCYkJ8qrOWW9tnmG5fMZX";
+    public final static String LOGIN_URL =
             "https://home.nest.com/login/oauth2?client_id=" + client_id +"&state=FOO";
-    public String redirectUrl = "https://senseme.redirect";
+
 //    <string name="NEST_API_KEY" translatable="false">9e9c8fe4-34db-418a-83bb-d837d57a01fd</string>
 //    <string name="NEST_API_SECRET" translatable="false">Iv7vuCYkJ8qrOWW9tnmG5fMZX</string>
 
