@@ -145,19 +145,31 @@ public interface BASCloudAPI {
                                       @Field("email") String email);
 
 
-//========================not yet implemented
+    // Associate a third party thermostat account with BAS account
+    // Nest/ecobee/etc.
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/thermostats")
     @FormUrlEncoded
-    Call<CloudMessage> createThermostat(@Header("Authorization") String myToken,
+    Call<BASThermostats> createUserThermostat(@Header("Authorization") String myToken,
                                         @Field("thermostat_type_id") String thermostatTypeId,
                                         @Field("authorization_code") String authorizationCode);
 
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @DELETE("/thermostats/{token_id}")
 //    @FormUrlEncoded
-    Call<CloudMessage> deleteThermostat(@Header("Authorization") String myToken,
-                                        @Path("token_id") String tokenID);
+    Call<CloudMessage> deleteUserThermostat(@Header("Authorization") String myToken,
+                                            @Path("token_id") String tokenID);
+
+//========================not yet implemented========================
+
+// Update Thermostat Climate Settings.  This is a new API
+//    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
+//    @POST("/thermostats")
+//    @FormUrlEncoded
+//    Call<CloudMessage> createUserThermostat(@Header("Authorization") String myToken,
+//                                        @Field("thermostat_type_id") String thermostatTypeId,
+//                                        @Field("authorization_code") String authorizationCode);
+
 
     @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/thermostats/links")
@@ -179,7 +191,7 @@ public interface BASCloudAPI {
     Call<CloudMessage> deleteThermostatLinkToDevice(@Header("Authorization") String myToken,
                                                     @Path("thermostat_id") String thermostatID,
                                                     @Path("device_id") String deviceID);
-//========================not yet implemented
+//========================not yet implemented========================
 
     // Supported FW keys
     //    Old GS1011 Haiku 	    FW000003 	3

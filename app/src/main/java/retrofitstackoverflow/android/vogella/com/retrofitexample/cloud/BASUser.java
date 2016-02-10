@@ -1,5 +1,7 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
+import android.util.Log;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -11,11 +13,15 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermos
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermostat;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.EcobeeAuthInfo;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
 
 /**
  * Created by dbeaven on 1/27/2016.
  */
 public class BASUser extends BASCloudTask{
+    private static final String TAG = BASUser.class.getSimpleName();
 
     public void confirmUserFromPin(BASAuthInfo basAuthInfo, Integer userPin, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
@@ -43,6 +49,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -75,6 +82,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -102,6 +110,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -130,6 +139,70 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void createExistingUserThermostatAccountAssociation(BASThermostat.ThermostatTypeId thermostatEnum,
+                                                                final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+        BASThermostat myThermostat = new BASThermostat();
+        String myThermostatId = myThermostat.getThermostatTypeIdFromEnum(thermostatEnum);
+        String myAuthCode = myThermostat.getThermostatAuthCodeFromEnum(thermostatEnum);
+
+        Call<BASThermostats> call = mBasCloudAPI.createUserThermostat("Bearer " + mToken.getAccess_token(),
+                myThermostatId, myAuthCode);
+
+        //asynchronous call
+        call.enqueue(new Callback<BASThermostats>() {
+            @Override
+            public void onResponse(Response<BASThermostats> response,
+                                   Retrofit retrofit) {
+
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
+                //not even sure if Retrofit 2.0 calls this anymore...we can
+                //add another call if it actually does
+            }
+        });
+    }
+
+    public void deleteExistingUserThermostatAccountAssociation(String thermostatTokenId,
+                                                               final CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+
+        Call<CloudMessage> call = mBasCloudAPI.deleteUserThermostat("Bearer " + mToken.getAccess_token(),
+                thermostatTokenId);
+
+        //asynchronous call
+        call.enqueue(new Callback<CloudMessage>() {
+            @Override
+            public void onResponse(Response<CloudMessage> response,
+                                   Retrofit retrofit) {
+
+                if (goodResponse(response)) {
+                    handleGoodResponse(response, delegate);
+                }
+                else {
+                    handleErrorResponse(response, delegate);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -157,6 +230,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -184,6 +258,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -222,6 +297,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -251,6 +327,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -283,6 +360,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -313,6 +391,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -342,6 +421,7 @@ public class BASUser extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }

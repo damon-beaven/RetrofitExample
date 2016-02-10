@@ -100,5 +100,21 @@
         android:id="@+id/menu_loginEcobee"
         android:title="loginEcobee"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_createNestAccountAssociation"
+        android:title="linkNestAccount"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_createEcobeeAccountAssociation"
+        android:title="linkEcobeeAccount"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_deleteNestAccountAssociation"
+        android:title="deleteNestAccount"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_deleteEcobeeAccountAssociation"
+        android:title="deleteEcobeeAccount"
+        app:showAsAction="ifRoom"/>
 
 </menu>

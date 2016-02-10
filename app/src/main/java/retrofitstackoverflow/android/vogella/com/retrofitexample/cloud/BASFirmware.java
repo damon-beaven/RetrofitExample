@@ -1,5 +1,7 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
+import android.util.Log;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -12,6 +14,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInf
  * Created by dbeaven on 2/1/2016.
  */
 public class BASFirmware extends BASCloudTask{
+    private static final String TAG = BASFirmware.class.getSimpleName();
 
     public void getFirmwareDownloadUrlFromToken(BASAuthInfo basAuthInfo,
                                                 String fwKey,
@@ -37,6 +40,7 @@ public class BASFirmware extends BASCloudTask{
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }

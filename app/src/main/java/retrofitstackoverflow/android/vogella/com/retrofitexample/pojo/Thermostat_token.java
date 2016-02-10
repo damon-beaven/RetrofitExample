@@ -2,7 +2,8 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.pojo;
 
 public class Thermostat_token {
 
-    private String id;
+    //unique id for YOUR thermostat (as seen in Thermostat list)
+    private String id;  // this is the token_id that is passed to deleteUserThermostats to identify which to DELETE
     private Thermostat_type thermostat_type;
     private String access_token;
     private String expires_at;

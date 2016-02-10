@@ -148,6 +148,18 @@ public class MainActivity extends Activity {
             case R.id.menu_loginEcobee:
                 doEcobeeLogin();
                 return true;
+            case R.id.menu_createNestAccountAssociation:
+                doCreateThermostatAccountAssociation(BASThermostat.ThermostatTypeId.NEST);
+                return true;
+            case R.id.menu_createEcobeeAccountAssociation:
+                doCreateThermostatAccountAssociation(BASThermostat.ThermostatTypeId.ECOBEE);
+                return true;
+            case R.id.menu_deleteNestAccountAssociation:
+                doDeleteThermostatAccountAssociation(BASThermostat.ThermostatTypeId.NEST);
+                return true;
+            case R.id.menu_deleteEcobeeAccountAssociation:
+                doDeleteThermostatAccountAssociation(BASThermostat.ThermostatTypeId.ECOBEE);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -189,6 +201,43 @@ public class MainActivity extends Activity {
                 updateTextViewFromError(message);
             }
         });
+    }
+
+    private void doCreateThermostatAccountAssociation(BASThermostat.ThermostatTypeId myThermostatId) {
+        BASUser userDevices = new BASUser();
+
+        userDevices.createExistingUserThermostatAccountAssociation(myThermostatId,
+                new BASCloudTask.CloudAsyncResponse() {
+
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                    }
+
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
+    }
+
+    private void doDeleteThermostatAccountAssociation(BASThermostat.ThermostatTypeId myThermostatId) {
+        BASUser userDevices = new BASUser();
+        String myToken = ""; //= getThermostatTokenFromThermostatEnum();
+
+        userDevices.deleteExistingUserThermostatAccountAssociation(myToken,
+                new BASCloudTask.CloudAsyncResponse() {
+
+                    @Override
+                    public void onCloudResponse(Response response) {
+                        updateTextViewFromResponse(response);
+                    }
+
+                    @Override
+                    public void onCloudError(CloudMessage message) {
+                        updateTextViewFromError(message);
+                    }
+                });
     }
 
     private void doGetUserThermostats(BASAuthInfo myBasAuthInfo) {

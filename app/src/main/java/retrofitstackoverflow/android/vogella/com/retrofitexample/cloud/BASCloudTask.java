@@ -129,7 +129,7 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
         Converter<ResponseBody, CloudMessage> converter =
                 mRetrofit.responseConverter(CloudMessage.class, new Annotation[0]);
 
-        // Let's try to get the error message our of the response
+        // Let's try to get the error message out of the response
         try {
             cloudMessage = converter.convert(response.errorBody());
             delegate.onCloudError(cloudMessage);

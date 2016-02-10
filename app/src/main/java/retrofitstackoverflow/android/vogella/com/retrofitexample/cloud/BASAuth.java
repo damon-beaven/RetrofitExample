@@ -1,5 +1,7 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
+import android.util.Log;
+
 import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
  * Created by dbeaven on 1/27/2016.
  */
 public class BASAuth extends BASCloudTask {
+    private static final String TAG = BASAuth.class.getSimpleName();
 
     public void loginExistingUser(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
@@ -47,6 +50,7 @@ public class BASAuth extends BASCloudTask {
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -79,6 +83,7 @@ public class BASAuth extends BASCloudTask {
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -111,6 +116,7 @@ public class BASAuth extends BASCloudTask {
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
@@ -143,6 +149,7 @@ public class BASAuth extends BASCloudTask {
 
             @Override
             public void onFailure(Throwable t) {
+                Log.wtf(TAG, t.toString());
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }

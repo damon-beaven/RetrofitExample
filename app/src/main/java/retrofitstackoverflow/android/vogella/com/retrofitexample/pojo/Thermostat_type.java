@@ -5,12 +5,13 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.pojo;
  */
 public class Thermostat_type {
 
+    //unique id for the TYPE of thermostat (as seen in Thermostat list)
     private String id;
     private String name;
-    private String description;     //getUserThermostats doesn't return this field
-    private String site_url;        //getUserThermostats doesn't return this field
-    private String created_at_utc;  //getUserThermostats doesn't return this field
-    private String updated_at_utc;  //getUserThermostats doesn't return this field
+    private String description;     //getUserThermostats and createUserThermostats doesn't return this field
+    private String site_url;        //getUserThermostats and createUserThermostats doesn't return this field
+    private String created_at_utc;  //getUserThermostats and createUserThermostats doesn't return this field
+    private String updated_at_utc;  //getUserThermostats and createUserThermostats doesn't return this field
 
     /**
      *

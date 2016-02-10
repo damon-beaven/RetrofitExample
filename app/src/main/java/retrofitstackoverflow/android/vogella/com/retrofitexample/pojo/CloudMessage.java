@@ -24,6 +24,17 @@ public class CloudMessage {
 //        ]
 //    {"email":["The email format is invalid."]}
 
+//    from create thermostat failure
+//{
+//    "message": "Thermostat user creation failed.",
+//        "status_code": 422,
+//        "errors": {
+//    "authorization_code": [
+//    "The authorization code field is required."
+//    ]
+//}
+//}
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
