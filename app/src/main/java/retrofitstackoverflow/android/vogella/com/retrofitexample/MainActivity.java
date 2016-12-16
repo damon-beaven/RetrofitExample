@@ -221,9 +221,9 @@ public class MainActivity extends Activity {
                 });
     }
 
-    private void doDeleteThermostatAccountAssociation(BASThermostat.ThermostatTypeId myThermostatId) {
+    private void doDeleteThermostatAccountAssociation(BASThermostat.ThermostatTypeId myThermostatTypeId) {
         BASUser userDevices = new BASUser();
-        String myToken = ""; //= getThermostatTokenFromThermostatEnum();
+        String myToken =  getThermostatTokenFromThermostatEnum(myThermostatTypeId);
 
         userDevices.deleteExistingUserThermostatAccountAssociation(myToken,
                 new BASCloudTask.CloudAsyncResponse() {
@@ -238,6 +238,20 @@ public class MainActivity extends Activity {
                         updateTextViewFromError(message);
                     }
                 });
+    }
+
+    private String getThermostatTokenFromThermostatEnum(BASThermostat.ThermostatTypeId myThermostatTypeId) {
+        String retvalToken = "";
+
+        switch (myThermostatTypeId) {
+            case NEST:
+                break;
+            case ECOBEE:
+                break;
+            default:
+                break;
+        }
+        return retvalToken;
     }
 
     private void doGetUserThermostats(BASAuthInfo myBasAuthInfo) {
@@ -692,13 +706,13 @@ public class MainActivity extends Activity {
             case BASUSER: {
                 break;
             }
-            // Nest doesn't log in this way...use NestAuthActivity
+            // Nest and ecobee don't log in this way...use NestAuthActivity
 //            case NESTUSER: {
 //                break;
 //            }
-            case ECOBEEUSER: {
-                break;
-            }
+//            case ECOBEEUSER: {
+//                break;
+//            }
             default: {
                 break;
             }
