@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import retrofit.Response;
+import retrofit2.Response;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASAuth;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASFirmware;
@@ -629,7 +629,7 @@ public class MainActivity extends Activity {
     }
 
     private void updateTextViewFromResponse(Response response) {
-        if (response.body() != null && response.isSuccess())
+        if (response.body() != null && response.isSuccessful())
         {
             updateTextView(successString + mBaseURL, response.body().toString());
         }

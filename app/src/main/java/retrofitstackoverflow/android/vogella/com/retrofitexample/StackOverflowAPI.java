@@ -3,9 +3,9 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample;
 /**
  * Created by dbeaven on 1/25/2016.
  */
-import retrofit.http.GET;
-import retrofit.http.Query;
-import retrofit.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import retrofit2.Call;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.StackOverflowQuestions;
 
 public interface StackOverflowAPI {

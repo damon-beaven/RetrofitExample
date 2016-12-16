@@ -2,42 +2,22 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
 import android.os.AsyncTask;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.ResponseBody;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-import retrofit.Converter;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Converter;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserConfirmInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
-
-/**
- * Created by dbeaven on 1/27/2016.
- */
-
-    //  Implementation in the parent class should look something like this
-    //  NOTE:  "implements AsyncResponse"
-    //         "goodResponse()..."
-    //          Call the task normally with ".execute();"
-//public class MainActivity implements AsyncResponse{
-//
-//    BASCloudTash asyncTask =new BASCloudTask(new AsyncResponse(){
-//
-//        @Override
-//        void goodResponse(String output){
-//            //Here you will receive the result fired from async class
-//            //of onPostExecute(result) method.
-//        }
-//    }).execute();
-//
-//}
 
 public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Object> {
 
@@ -75,25 +55,16 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
      * Constructors
      */
     protected BASCloudTask() {
-//        BASAuthInfo mAuthInfo = new BASAuthInfo();
 
-//        // Define the interceptor, add authentication headers
-//        Interceptor interceptor = new Interceptor() {
-//            @Override
-//            public Response intercept(Chain chain) throws IOException {
-//                Request newRequest = chain.request().newBuilder().addHeader("User-Agent", "Retrofit-Sample-App").build();
-//                return chain.proceed(newRequest);
-//            }
-//        };
 
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        // set your desired log level
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient httpClient = new OkHttpClient();
-        // add your other interceptors
-//        httpClient.interceptors().add(interceptor);
-        // add logging as last interceptor
-        httpClient.interceptors().add(logging);  // <-- this is the important line!
+
+        Interceptor interceptor = new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                return null;
+            }
+        };
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(mBaseURL)
@@ -127,7 +98,7 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
         //NOTE: found this example on https://futurestud.io/blog/retrofit-2-simple-error-handling
         // Some simple changes got it working
         Converter<ResponseBody, CloudMessage> converter =
-                mRetrofit.responseConverter(CloudMessage.class, new Annotation[0]);
+                mRetrofit.responseBodyConverter(CloudMessage.class, new Annotation[0]);
 
         // Let's try to get the error message out of the response
         try {

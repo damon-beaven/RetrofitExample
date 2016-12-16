@@ -1,9 +1,9 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
@@ -84,8 +84,8 @@ public class BASThermostat extends BASCloudTask {
         //asynchronous call
         call.enqueue(new Callback<BASThermostatTypes>() {
             @Override
-            public void onResponse(Response<BASThermostatTypes> response,
-                                   Retrofit retrofit) {
+            public void onResponse(Call<BASThermostatTypes> call,
+                                   Response<BASThermostatTypes> response) {
 
                 if (goodResponse(response)) {
                     handleGoodResponse(response, delegate);
@@ -96,7 +96,7 @@ public class BASThermostat extends BASCloudTask {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<BASThermostatTypes> call, Throwable t) {
                 //not even sure if Retrofit 2.0 calls this anymore...we can
                 //add another call if it actually does
             }
