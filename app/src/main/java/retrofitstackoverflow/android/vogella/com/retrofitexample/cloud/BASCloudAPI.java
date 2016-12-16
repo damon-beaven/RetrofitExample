@@ -32,23 +32,18 @@ public interface BASCloudAPI {
 //    @GET("/users/{username}")
 //    Call<User> getUserConfirmation(@Path("username") String username);
 //
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/me")
     Call<BASUserInfo> getUserInfo(@Header("Authorization") String myToken);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/devices")
     Call<BASDevices> getUserDevices(@Header("Authorization") String myToken);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/thermostats/types")
     Call<BASThermostatTypes> getThermostatTypes(@Header("Authorization") String myToken);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/thermostats")
     Call<BASThermostats> getUserThermostats(@Header("Authorization") String myToken);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/thermostats/links")
     Call<BASThermostatsLinkedDevicesInfo> getUserThermostatsLinkedDevices(@Header("Authorization") String myToken);
 
@@ -83,7 +78,6 @@ public interface BASCloudAPI {
                                             @Field("scope") String scope);
 
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/users")
     @FormUrlEncoded
     Call<BASUserInfo> createUserFromToken(@Header("Authorization") String myToken,
@@ -95,7 +89,6 @@ public interface BASCloudAPI {
     // each @Field is optional on the cloud side, but we use them all
     // so we don't have to parse to figure out what was changed.
     // @Path userID is required
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @PUT("/users/{user_id}")
     @FormUrlEncoded
     Call<BASUserInfo> updateUserFromId(@Header("Authorization") String myToken,
@@ -109,14 +102,12 @@ public interface BASCloudAPI {
     // confirmUserFromPin
     // will get a 32 char UUID (reset_token)
     // you will need the reset_token if you want to reset the password
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @PUT("/users/confirm")
     @FormUrlEncoded
     Call<BASUserConfirmInfo> confirmUserFromPin(@Header("Authorization") String myToken,
                                        @Field("email") String email,
                                        @Field("pin") String pin);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @PUT("/users/password")
     @FormUrlEncoded
     Call<CloudMessage> resetUserPasswordFromResetToken(@Header("Authorization") String myToken,
@@ -128,7 +119,6 @@ public interface BASCloudAPI {
     // get create_user token
     // create the user (registration)
     // getNewPinEmail
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/users/pin")
     @FormUrlEncoded
     Call<CloudMessage> getNewPinEmail(@Header("Authorization") String myToken,
@@ -138,7 +128,6 @@ public interface BASCloudAPI {
     // call getPasswordEmail with reset_password token
     // call confirmUserFromPin with email and pin
     // call resetUserPassword with email, pin, reset_token (from confirmUserFromPin), password
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/users/pin")
     @FormUrlEncoded
     Call<CloudMessage> getResetPasswordEmail(@Header("Authorization") String myToken,
@@ -147,14 +136,12 @@ public interface BASCloudAPI {
 
     // Associate a third party thermostat account with BAS account
     // Nest/ecobee/etc.
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/thermostats")
     @FormUrlEncoded
     Call<BASThermostats> createUserThermostat(@Header("Authorization") String myToken,
                                         @Field("thermostat_type_id") String thermostatTypeId,
                                         @Field("authorization_code") String authorizationCode);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @DELETE("/thermostats/{token_id}")
 //    @FormUrlEncoded
     Call<CloudMessage> deleteUserThermostat(@Header("Authorization") String myToken,
@@ -171,21 +158,18 @@ public interface BASCloudAPI {
 //                                        @Field("authorization_code") String authorizationCode);
 
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @POST("/thermostats/links")
     @FormUrlEncoded
     Call<CloudMessage> linkThermostatToDevice(@Header("Authorization") String myToken,
                                               @Field("device_id") String deviceID,
                                               @Field("thermostat_id") String thermostatID);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/thermostats/links")
     @FormUrlEncoded
     Call<CloudMessage> getThermostatLinks(@Header("Authorization") String myToken,
                                               @Field("device_id") String deviceID,
                                               @Field("thermostat_id") String thermostatID);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @DELETE("/thermostats/links/{thermostat_id}/{device_id}")
 //    @FormUrlEncoded
     Call<CloudMessage> deleteThermostatLinkToDevice(@Header("Authorization") String myToken,
@@ -201,7 +185,6 @@ public interface BASCloudAPI {
     //    Haiku H/I Series 	    FW000007 	7
     // source:
     // file:///C:/gitdev/controls/doc/Big%20Ass%20Solutions%20Wi-Fi%20Ecosystem%20Protocol%20Specification.html
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @GET("/firmware")
     Call<BASFirmwareInfo> getFirmwareDownloadUrlFromToken(@Header("Authorization") String myToken,
                                                      @Query("firmware_key") String fwKey);
@@ -241,7 +224,6 @@ public interface BASCloudAPI {
 //                                 @Field("first_name") String firstName,
 //                                 @Field("last_name") String lastName);
 
-    @Headers({"Accept: application/vnd.bigassfans.v1+json"})
     @DELETE("/users/{user_id}")
 //    @FormUrlEncoded
     Call<CloudMessage> userDelete(@Header("Authorization") String myToken,

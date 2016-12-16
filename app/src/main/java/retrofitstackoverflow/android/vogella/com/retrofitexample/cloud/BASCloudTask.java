@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -57,14 +58,22 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
     protected BASCloudTask() {
 
 
-        OkHttpClient httpClient = new OkHttpClient();
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 
         Interceptor interceptor = new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
-                return null;
+                Request original = chain.request();
+
+                Request request = original.newBuilder()
+                        .header("Accept", "application/vnd.bigassfans.v1+json")
+                        .method(original.method(), original.body())
+                        .build();
+                return chain.proceed(request);
             }
         };
+        httpClientBuilder.addInterceptor(interceptor);
+        OkHttpClient httpClient = httpClientBuilder.build();
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(mBaseURL)
