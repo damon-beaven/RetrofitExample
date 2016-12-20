@@ -1,6 +1,11 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
 import retrofit2.Call;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -12,6 +17,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.mock.BehaviorDelegate;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudAPI;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASAccessTokenCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASFirmwareInfo;
@@ -25,6 +31,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.User;
 
 public class MockBASCloudAPI implements BASCloudAPI {
     private final BehaviorDelegate<BASCloudAPI> delegate;
+    private static final String TAG = MockBASCloudAPI.class.getSimpleName();
     public MockBASCloudAPI(BehaviorDelegate<BASCloudAPI> service) {
         this.delegate = service;
     }
@@ -32,10 +39,13 @@ public class MockBASCloudAPI implements BASCloudAPI {
     @Override
     public Call<BASUserInfo> getUserInfo(@Header("Authorization") String myToken) {
         BASUserInfo basUserInfo = new BASUserInfo();
-        User user = new User();
-        user.setConfirmed(true);
-        user.setEmail("bill.gates@hotmail.com");
-        basUserInfo.setUser(user);
+        try {
+            String userInfoJsonString = ApiTestHelper.getStringFromFile(this, "me.json");
+            Gson gson = new Gson();
+            basUserInfo = gson.fromJson(userInfoJsonString, BASUserInfo.class);
+        } catch (Exception exception) {
+            Log.d(TAG, exception.toString());
+        }
         return  delegate.returningResponse(basUserInfo).getUserInfo(myToken);
     }
 

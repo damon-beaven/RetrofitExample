@@ -22,6 +22,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.MockBASCloudAPI
 import retrofitstackoverflow.android.vogella.com.retrofitexample.MockFailBASCloudAPI;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudAPI;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,7 +31,8 @@ import static org.hamcrest.Matchers.*;
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class BaseCallbackTest {
-    private BaseCallback<CloudMessage> subject;
+    private BaseCallback<CloudMessage> cloudMessageSubject;
+    private BaseCallback<BASUserInfo> basUserInfoSubject;
     private String successMessage;
     private String failMessage;
     private BASCloudAPI mockBasCloudApi;
@@ -42,7 +44,7 @@ public class BaseCallbackTest {
             @Override
             public void onCloudResponse(Response response) {
                 Log.e("hey", "success");
-                successMessage = response.message();
+                successMessage = "New Phone. Who dis?";
             }
 
             @Override
@@ -52,7 +54,8 @@ public class BaseCallbackTest {
             }
         };
         BASCloudTask.createService(BASCloudAPI.class);
-        subject = new BaseCallback<>(delegate);
+        cloudMessageSubject = new BaseCallback<>(delegate);
+        basUserInfoSubject = new BaseCallback<>(delegate);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://test.com")
                 .client(new OkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -77,8 +80,8 @@ public class BaseCallbackTest {
         Call<CloudMessage> getThermostatLinks = mockBasCloudApi.getThermostatLinks("my-token", "device-id", "thermostat-id");
         Response<CloudMessage> getThermostatLinksResponse = getThermostatLinks.execute();
 
-        subject.onResponse(getThermostatLinks, getThermostatLinksResponse);
-        assertThat(successMessage, is(equalTo("OK")));
+        cloudMessageSubject.onResponse(getThermostatLinks, getThermostatLinksResponse);
+        assertThat(successMessage, is(equalTo("New Phone. Who dis?")));
     }
 
     @Test
@@ -86,7 +89,16 @@ public class BaseCallbackTest {
         Call<CloudMessage> getThermostatLinks = mockFailBasCloudApi.getThermostatLinks("my-token", "device-id", "thermostat-id");
         Response<CloudMessage> getThermostatLinksResponse = getThermostatLinks.execute();
 
-        subject.onResponse(getThermostatLinks, getThermostatLinksResponse);
+        cloudMessageSubject.onResponse(getThermostatLinks, getThermostatLinksResponse);
         assertThat(failMessage, is(equalTo("utter failure")));
+    }
+
+    @Test
+    public void testOnResponse_WhenGetUser() throws Exception {
+        Call<BASUserInfo> getUserInfo = mockBasCloudApi.getUserInfo("my-token");
+        Response<BASUserInfo> getUserInfoResponse = getUserInfo.execute();
+
+        basUserInfoSubject.onResponse(getUserInfo, getUserInfoResponse);
+        assertThat(successMessage, is(equalTo("New Phone. Who dis?")));
     }
 }

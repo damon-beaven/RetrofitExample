@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "user": {
+    "id": "8614e4dd-6650-4040-ae33-433bd1a40290",
+    "first_name": "Zach",
+    "last_name": "Freeman",
+    "email": "zach.freeman@bigasssolutions.com",
+    "pin": null,
+    "confirmed": true,
+    "country": {
+      "id": 1,
+      "abbr": "US",
+      "name": "United States"
+    },
+    "address1": null,
+    "address2": null,
+    "city": "Lexington",
+    "region": {
+      "id": 20,
+      "abbr": "KY",
+      "name": "Kentucky"
+    },
+    "region_other": null,
+    "postal_code": "40511",
+    "marketing_opt_in": 0,
+    "updated_at_utc": "2016-10-31 18:05:54",
+    "created_at_utc": "2016-10-31 18:04:42"
+  }
+}
