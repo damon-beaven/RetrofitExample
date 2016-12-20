@@ -6,6 +6,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASDevicesCallback;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASThermostatsCallback;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASThermostatsLinkedDevicesInfoCallback;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASUserConfirmInfoCallback;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASUserInfoCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.CloudMessageCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
@@ -22,107 +27,11 @@ public class BASUser extends BASCloudTask{
     private static final String TAG = BASUser.class.getSimpleName();
 
     private Callback<CloudMessage> mCloudMessageCallback = new CloudMessageCallback<>(this.mDelegate);
-
-    private Callback<BASUserConfirmInfo> mBASUserConfirmInfoCallback = new Callback<BASUserConfirmInfo>() {
-        @Override
-        public void onResponse(Call<BASUserConfirmInfo> call, Response<BASUserConfirmInfo> response) {
-            //let's save that auth token for subsequent cloud calls!!
-            if (goodResponse(response)) {
-                mConfirmInfo = (BASUserConfirmInfo)response.body();
-                handleGoodResponse(response, mDelegate);
-            }
-            else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<BASUserConfirmInfo> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
-
-    private Callback<BASUserInfo> mBASUserInfoCallback = new Callback<BASUserInfo>() {
-        @Override
-        public void onResponse(Call<BASUserInfo> call, Response<BASUserInfo> response) {
-            //let's save that auth token for subsequent cloud calls!!
-            if (goodResponse(response)) {
-                handleGoodResponse(response, mDelegate);
-            }
-            else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<BASUserInfo> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
-
-    private Callback<BASDevices> mBASDevicesCallback = new Callback<BASDevices>() {
-        @Override
-        public void onResponse(Call<BASDevices> call,Response<BASDevices> response) {
-
-            if (goodResponse(response)) {
-                handleGoodResponse(response, mDelegate);
-            }
-            else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<BASDevices> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
-
-    private Callback<BASThermostats> mBASThermostatsCallback = new Callback<BASThermostats>() {
-        @Override
-        public void onResponse(Call<BASThermostats> call, Response<BASThermostats> response) {
-
-            if (goodResponse(response)) {
-                handleGoodResponse(response, mDelegate);
-            }
-            else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<BASThermostats> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
-
-    private Callback<BASThermostatsLinkedDevicesInfo> mBASThermostatsLinkedDevicesInfoCallback = new Callback<BASThermostatsLinkedDevicesInfo>() {
-        @Override
-        public void onResponse(Call<BASThermostatsLinkedDevicesInfo> call, Response<BASThermostatsLinkedDevicesInfo> response) {
-
-            if (goodResponse(response)) {
-                handleGoodResponse(response, mDelegate);
-            }
-            else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<BASThermostatsLinkedDevicesInfo> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
+    private Callback<BASUserConfirmInfo> mBASUserConfirmInfoCallback = new BASUserConfirmInfoCallback<>(this.mDelegate);
+    private Callback<BASUserInfo> mBASUserInfoCallback = new BASUserInfoCallback<>(this.mDelegate);
+    private Callback<BASDevices> mBASDevicesCallback = new BASDevicesCallback<>(this.mDelegate);
+    private Callback<BASThermostats> mBASThermostatsCallback = new BASThermostatsCallback<>(this.mDelegate);
+    private Callback<BASThermostatsLinkedDevicesInfo> mBASThermostatsLinkedDevicesInfoCallback = new BASThermostatsLinkedDevicesInfoCallback<>(this.mDelegate);
 
     public void confirmUserFromPin(BASAuthInfo basAuthInfo, Integer userPin, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;

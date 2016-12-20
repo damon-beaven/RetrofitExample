@@ -6,6 +6,7 @@ import android.util.Log;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASAccessTokenCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
@@ -16,27 +17,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 public class BASAuth extends BASCloudTask {
     private static final String TAG = BASAuth.class.getSimpleName();
 
-    private Callback<BASAccessToken> mAccessTokenCallback = new Callback<BASAccessToken>() {
-        @Override
-        public void onResponse(Call<BASAccessToken> call,
-                               Response<BASAccessToken> response) {
-
-            //let's save that auth token for subsequent cloud calls!!
-            if (goodResponse(response)) {
-                mToken = (BASAccessToken) response.body();
-                handleGoodResponse(response, mDelegate);
-            } else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<BASAccessToken> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
+    private Callback<BASAccessToken> mAccessTokenCallback = new BASAccessTokenCallback<>(this.mDelegate);
 
     public void loginExistingUser(BASAuthInfo basAuthInfo, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;

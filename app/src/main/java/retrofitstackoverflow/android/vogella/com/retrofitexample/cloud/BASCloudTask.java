@@ -76,39 +76,6 @@ public abstract class BASCloudTask { // extends AsyncTask<Object, Integer, Objec
         return sRetrofit.create(serviceClass);
     }
 
-    protected boolean goodResponse(Response<?> response) {
-        return response.body() != null;
-    }
-
-    protected void handleGoodResponse(Response<?> response, BASCloudTask.CloudAsyncResponse delegate) {
-        delegate.onCloudResponse(response);
-    }
-
-    // In Retrofit 2.0 we need need to parse out our errors.  I go ahead and
-    // convert them to a CloudMessage which is custom for our purposes.
-    // There may be a way to add something like this as an interceptor
-    // but I didn't dig too much into that b/c this works just the same
-    // and the impact to the user of these classes is no different.  We still need
-    // a way to pass errors back to them in a different delegate API like onCloudError()
-    protected void handleErrorResponse(Response<?> response, BASCloudTask.CloudAsyncResponse delegate) {
-        CloudMessage cloudMessage = new CloudMessage();
-
-        // need to create a converter for the error message
-        //NOTE: found this example on https://futurestud.io/blog/retrofit-2-simple-error-handling
-        // Some simple changes got it working
-        Converter<ResponseBody, CloudMessage> converter =
-                BASCloudTask.getRetrofit().responseBodyConverter(CloudMessage.class, new Annotation[0]);
-
-        // Let's try to get the error message out of the response
-        try {
-            cloudMessage = converter.convert(response.errorBody());
-            delegate.onCloudError(cloudMessage);
-        } catch (IOException e) {
-            cloudMessage.message = "IOException processing error response.";
-            delegate.onCloudError(cloudMessage);
-        }
-    }
-
     public static Retrofit getRetrofit() {
         return sRetrofit;
     }

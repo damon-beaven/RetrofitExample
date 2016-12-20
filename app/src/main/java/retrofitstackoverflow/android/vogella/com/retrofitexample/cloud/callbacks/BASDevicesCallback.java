@@ -1,14 +1,17 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks;
+
+
 import android.util.Log;
 
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
 
-public class CloudMessageCallback<T> extends BaseCallback<T> {
-    private static final String TAG = CloudMessageCallback.class.getSimpleName();
+public class BASDevicesCallback<T> extends BaseCallback<T> {
 
-    public CloudMessageCallback(BASCloudTask.CloudAsyncResponse delegate) {
+    private static final String TAG = BASDevicesCallback.class.getSimpleName();
+
+    public BASDevicesCallback(BASCloudTask.CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
     }
 
@@ -22,5 +25,4 @@ public class CloudMessageCallback<T> extends BaseCallback<T> {
             handleErrorResponse(response, mDelegate);
         }
     }
-
 }
