@@ -6,12 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import okhttp3.OkHttpClient;
-import okhttp3.mockwebserver.MockResponse;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -24,7 +22,6 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.MockBASCloudAPI
 import retrofitstackoverflow.android.vogella.com.retrofitexample.MockFailBASCloudAPI;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudAPI;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.CloudMessageCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -32,12 +29,12 @@ import static org.hamcrest.Matchers.*;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
-public class CloudMessageCallbackTest {
-    private CloudMessageCallback<CloudMessage> subject;
-    String successMessage;
-    String failMessage;
-    BASCloudAPI mockBasCloudApi;
-    BASCloudAPI mockFailBasCloudApi;
+public class BaseCallbackTest {
+    private BaseCallback<CloudMessage> subject;
+    private String successMessage;
+    private String failMessage;
+    private BASCloudAPI mockBasCloudApi;
+    private BASCloudAPI mockFailBasCloudApi;
 
     @Before
     public void setup() {
@@ -55,7 +52,7 @@ public class CloudMessageCallbackTest {
             }
         };
         BASCloudTask.createService(BASCloudAPI.class);
-        subject = new CloudMessageCallback<>(delegate);
+        subject = new BaseCallback<>(delegate);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://test.com")
                 .client(new OkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())

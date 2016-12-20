@@ -13,7 +13,7 @@ public class BASUserConfirmInfoCallback<T> extends BaseCallback<T> {
     protected static BASUserConfirmInfo sConfirmInfo;
 
     public BASUserConfirmInfoCallback(BASCloudTask.CloudAsyncResponse delegate) {
-        this.mDelegate = delegate;
+        super(delegate);
     }
 
     @Override

@@ -2,12 +2,9 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASThermostatTypesCallback;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BaseCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.EcobeeAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
 
@@ -81,7 +78,7 @@ public class BASThermostat extends BASCloudTask {
         this.mDelegate = delegate;
 
         Call<BASThermostatTypes> call = mBasCloudAPI.getThermostatTypes("Bearer " + mToken.getAccess_token());
-        BASThermostatTypesCallback basThermostatTypesCallback = new BASThermostatTypesCallback(this.mDelegate);
+        Callback<BASThermostatTypes> basThermostatTypesCallback = new BaseCallback(this.mDelegate);
         //asynchronous call
         call.enqueue(basThermostatTypesCallback);
     }

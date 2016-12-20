@@ -12,7 +12,7 @@ public class BASAccessTokenCallback<T> extends BaseCallback<T> {
     protected static BASAccessToken sBasAccessToken = new BASAccessToken();
 
     public BASAccessTokenCallback(BASCloudTask.CloudAsyncResponse delegate) {
-        this.mDelegate = delegate;
+        super(delegate);
     }
 
     @Override

@@ -1,17 +1,9 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud;
 
-import android.util.Log;
-
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASDevicesCallback;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASThermostatsCallback;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASThermostatsLinkedDevicesInfoCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASUserConfirmInfoCallback;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASUserInfoCallback;
-import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.CloudMessageCallback;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BaseCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostats;
@@ -26,12 +18,12 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 public class BASUser extends BASCloudTask{
     private static final String TAG = BASUser.class.getSimpleName();
 
-    private Callback<CloudMessage> mCloudMessageCallback = new CloudMessageCallback<>(this.mDelegate);
+    private Callback<CloudMessage> mCloudMessageCallback = new BaseCallback<>(this.mDelegate);
     private Callback<BASUserConfirmInfo> mBASUserConfirmInfoCallback = new BASUserConfirmInfoCallback<>(this.mDelegate);
-    private Callback<BASUserInfo> mBASUserInfoCallback = new BASUserInfoCallback<>(this.mDelegate);
-    private Callback<BASDevices> mBASDevicesCallback = new BASDevicesCallback<>(this.mDelegate);
-    private Callback<BASThermostats> mBASThermostatsCallback = new BASThermostatsCallback<>(this.mDelegate);
-    private Callback<BASThermostatsLinkedDevicesInfo> mBASThermostatsLinkedDevicesInfoCallback = new BASThermostatsLinkedDevicesInfoCallback<>(this.mDelegate);
+    private Callback<BASUserInfo> mBASUserInfoCallback = new BaseCallback<>(this.mDelegate);
+    private Callback<BASDevices> mBASDevicesCallback = new BaseCallback<>(this.mDelegate);
+    private Callback<BASThermostats> mBASThermostatsCallback = new BaseCallback<>(this.mDelegate);
+    private Callback<BASThermostatsLinkedDevicesInfo> mBASThermostatsLinkedDevicesInfoCallback = new BaseCallback<>(this.mDelegate);
 
     public void confirmUserFromPin(BASAuthInfo basAuthInfo, Integer userPin, final CloudAsyncResponse delegate) {
         this.mDelegate = delegate;

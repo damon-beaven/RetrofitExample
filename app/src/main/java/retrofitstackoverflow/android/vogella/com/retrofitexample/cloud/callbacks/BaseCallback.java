@@ -15,6 +15,11 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 
 public class BaseCallback<T> implements Callback<T> {
     protected BASCloudTask.CloudAsyncResponse mDelegate;
+
+    public BaseCallback(BASCloudTask.CloudAsyncResponse delegate) {
+        this.mDelegate = delegate;
+    }
+
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
 
@@ -22,7 +27,7 @@ public class BaseCallback<T> implements Callback<T> {
             handleGoodResponse(response, mDelegate);
         }
         else {
-            //handleErrorResponse(response, mDelegate);
+            handleErrorResponse(response, mDelegate);
         }
     }
 
