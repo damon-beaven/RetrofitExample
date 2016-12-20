@@ -14,13 +14,7 @@ public class CloudMessageCallback<T> extends BaseCallback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-
-        if (goodResponse(response)) {
-            handleGoodResponse(response, mDelegate);
-        }
-        else {
-            handleErrorResponse(response, mDelegate);
-        }
+        super.onResponse(call, response);
     }
 
 }

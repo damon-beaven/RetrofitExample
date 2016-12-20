@@ -10,7 +10,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASUserCon
 
 public class BASUserConfirmInfoCallback<T> extends BaseCallback<T> {
     private static final String TAG = BASUserConfirmInfoCallback.class.getSimpleName();
-    private BASUserConfirmInfo mConfirmInfo;
+    protected static BASUserConfirmInfo sConfirmInfo;
 
     public BASUserConfirmInfoCallback(BASCloudTask.CloudAsyncResponse delegate) {
         this.mDelegate = delegate;
@@ -20,7 +20,7 @@ public class BASUserConfirmInfoCallback<T> extends BaseCallback<T> {
     public void onResponse(Call<T> call, Response<T> response) {
 
         if (goodResponse(response)) {
-            mConfirmInfo = (BASUserConfirmInfo)response.body();
+            sConfirmInfo = (BASUserConfirmInfo)response.body();
             handleGoodResponse(response, mDelegate);
         }
         else {
