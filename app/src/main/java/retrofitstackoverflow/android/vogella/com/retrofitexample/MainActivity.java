@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
         basNewUserAuthInfo.last_name = "Bobby";
 
         BASAuth tempUserAuth = new BASAuth();
-        mBaseURL = tempUserAuth.getBaseURL();
+        mBaseURL = BASCloudTask.API_BASE_URL;
 
         setContentView(R.layout.activity_main);
     }

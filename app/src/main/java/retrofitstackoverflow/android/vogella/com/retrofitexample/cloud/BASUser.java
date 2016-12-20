@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.CloudMessageCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASDevices;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostats;
@@ -20,25 +21,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 public class BASUser extends BASCloudTask{
     private static final String TAG = BASUser.class.getSimpleName();
 
-    private Callback<CloudMessage> mCloudMessageCallback = new Callback<CloudMessage>() {
-        @Override
-        public void onResponse(Call<CloudMessage> call, Response<CloudMessage> response) {
-
-            if (goodResponse(response)) {
-                handleGoodResponse(response, mDelegate);
-            }
-            else {
-                handleErrorResponse(response, mDelegate);
-            }
-        }
-
-        @Override
-        public void onFailure(Call<CloudMessage> call, Throwable t) {
-            Log.wtf(TAG, t.toString());
-            //not even sure if Retrofit 2.0 calls this anymore...we can
-            //add another call if it actually does
-        }
-    };
+    private Callback<CloudMessage> mCloudMessageCallback = new CloudMessageCallback<>(this.mDelegate);
 
     private Callback<BASUserConfirmInfo> mBASUserConfirmInfoCallback = new Callback<BASUserConfirmInfo>() {
         @Override
