@@ -1,4 +1,4 @@
-package retrofitstackoverflow.android.vogella.com.retrofitexample;
+package retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks;
 
 import android.util.Log;
 
@@ -19,6 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.mock.BehaviorDelegate;
 import retrofit2.mock.MockRetrofit;
 import retrofit2.mock.NetworkBehavior;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.BuildConfig;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.MockBASCloudAPI;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.MockFailBASCloudAPI;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudAPI;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.CloudMessageCallback;
@@ -34,6 +37,7 @@ public class CloudMessageCallbackTest {
     String successMessage;
     String failMessage;
     BASCloudAPI mockBasCloudApi;
+    BASCloudAPI mockFailBasCloudApi;
 
     @Before
     public void setup() {
@@ -50,6 +54,7 @@ public class CloudMessageCallbackTest {
                 failMessage = message.message;
             }
         };
+        BASCloudTask.createService(BASCloudAPI.class);
         subject = new CloudMessageCallback<>(delegate);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://test.com")
                 .client(new OkHttpClient())
@@ -62,6 +67,7 @@ public class CloudMessageCallbackTest {
                 .build();
         BehaviorDelegate<BASCloudAPI> basCloudAPIBehaviorDelegate = mockRetrofit.create(BASCloudAPI.class);
         mockBasCloudApi = new MockBASCloudAPI(basCloudAPIBehaviorDelegate);
+        mockFailBasCloudApi = new MockFailBASCloudAPI(basCloudAPIBehaviorDelegate);
     }
 
     @After
@@ -70,11 +76,20 @@ public class CloudMessageCallbackTest {
     }
 
     @Test
-    public void testOnResponse_WhenGoodResponse_SetsSuccessMessageToOK() throws Exception {
+    public void testOnResponse_WhenGoodResponse_SetsSuccessMessage() throws Exception {
         Call<CloudMessage> getThermostatLinks = mockBasCloudApi.getThermostatLinks("my-token", "device-id", "thermostat-id");
         Response<CloudMessage> getThermostatLinksResponse = getThermostatLinks.execute();
 
         subject.onResponse(getThermostatLinks, getThermostatLinksResponse);
         assertThat(successMessage, is(equalTo("OK")));
+    }
+
+    @Test
+    public void testOnResponse_WhenBadResponse_SetsFailMessage() throws Exception {
+        Call<CloudMessage> getThermostatLinks = mockFailBasCloudApi.getThermostatLinks("my-token", "device-id", "thermostat-id");
+        Response<CloudMessage> getThermostatLinksResponse = getThermostatLinks.execute();
+
+        subject.onResponse(getThermostatLinks, getThermostatLinksResponse);
+        assertThat(failMessage, is(equalTo("utter failure")));
     }
 }
