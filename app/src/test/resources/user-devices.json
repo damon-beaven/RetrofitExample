@@ -1,0 +1,432 @@
+{
+  "success": true,
+  "devices": [
+    {
+      "id": "00c8d1b1-2f16-41a9-87b7-37edf84bbad6",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:D8:80:1E",
+      "connected_since": null,
+      "latitude": null,
+      "longitude": null,
+      "device_type": {
+        "id": 6,
+        "name": "Haiku Light"
+      },
+      "settings": {
+        "name": "jumanji Light",
+        "group_name": "jumanji",
+        "firmware": "2.2.63",
+        "ssid": "zach-desk",
+        "light_auto": true,
+        "occ_timeout": 600000,
+        "boot": "0.4.19",
+        "scheduled_events": 4,
+        "updater": "2.2.63",
+        "bookends_light_min": 1,
+        "bookends_light_max": 16,
+        "light_mode": "ALC",
+        "alc_method": "AVERAGE",
+        "alc_min": 1,
+        "alc_max": 10,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:15:13.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "ambient_temp_c": null,
+        "case_temp_c": null,
+        "env_light": 10104,
+        "env_temp_c": null,
+        "internal_temp_c": null,
+        "light_color_temp": 4150,
+        "light_level": 0,
+        "light_scale": 0,
+        "has_color": null,
+        "occupied": true,
+        "sleep_active": false,
+        "uptime": 338036,
+        "internal_light": null,
+        "alc_target_lux": 10464,
+        "rssi": -43,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:15:13.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2016-11-15 14:39:11",
+      "updated_at_utc": "2016-12-21 19:17:09"
+    },
+    {
+      "id": "107f10fd-df5c-4725-9e29-8d2ed9ec3389",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:D2:22:A2",
+      "connected_since": null,
+      "latitude": null,
+      "longitude": null,
+      "device_type": {
+        "id": 4,
+        "name": "Haiku Wall Control"
+      },
+      "settings": {
+        "name": "Haiku_WC_D2:22:A2",
+        "group_name": "jumanji",
+        "firmware": "2.2.42",
+        "ssid": "zach-desk",
+        "updater": "2.2.42",
+        "last_reported_utc": {
+          "date": "2016-12-19 18:14:50.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "ambient_temp_c": "27.57",
+        "humidity": "13.8",
+        "env_humidity": "21.9",
+        "env_temp_c": "22.12",
+        "internal_temp_c": "29.94",
+        "occupied": true,
+        "uptime": 347846,
+        "rssi": -46,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:14:50.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2016-05-12 20:45:29",
+      "updated_at_utc": "2016-12-19 18:14:50"
+    },
+    {
+      "id": "3dc28769-ad64-459a-b2bb-a41129418da5",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:D9:EA:1A",
+      "connected_since": null,
+      "latitude": null,
+      "longitude": null,
+      "device_type": {
+        "id": 6,
+        "name": "Haiku Light"
+      },
+      "settings": {
+        "name": "haiku-light",
+        "group_name": "jumanji",
+        "firmware": "2.2.53",
+        "ssid": "zach-desk",
+        "light_auto": false,
+        "occ_timeout": 600000,
+        "boot": "2.2.18",
+        "scheduled_events": 2,
+        "updater": "2.2.53",
+        "bookends_light_min": 1,
+        "bookends_light_max": 16,
+        "light_mode": "MANUAL",
+        "alc_method": "AVERAGE",
+        "alc_min": 1,
+        "alc_max": 15,
+        "last_reported_utc": {
+          "date": "2016-12-07 13:53:01.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "ambient_temp_c": "25.50",
+        "case_temp_c": "30.66",
+        "env_light": 6672,
+        "env_temp_c": "25.50",
+        "internal_temp_c": "31.84",
+        "light_color_temp": 2200,
+        "light_level": 0,
+        "light_scale": 0,
+        "has_color": 1,
+        "occupied": true,
+        "sleep_active": false,
+        "uptime": 413786,
+        "internal_light": 107904,
+        "alc_target_lux": 0,
+        "rssi": -42,
+        "last_reported_utc": {
+          "date": "2016-12-07 13:53:01.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2016-07-28 17:07:59",
+      "updated_at_utc": "2016-12-07 13:53:01"
+    },
+    {
+      "id": "5473c87b-c89e-42dd-9163-2f7618fd209e",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:C2:3C:F1",
+      "connected_since": null,
+      "latitude": "38.13460000",
+      "longitude": "-84.49580000",
+      "device_type": {
+        "id": 5,
+        "name": "Haiku L Series"
+      },
+      "settings": {
+        "name": "el series",
+        "group_name": "Master Bedroom",
+        "firmware": "2.2.39",
+        "ssid": "zach-desk",
+        "light_auto": false,
+        "occ_timeout": 600000,
+        "boot": "0.6.2",
+        "scheduled_events": 2,
+        "updater": "2.2.39",
+        "has_sensor_data": 0,
+        "bookends_fan_min": 1,
+        "bookends_fan_max": 7,
+        "bookends_light_min": 1,
+        "bookends_light_max": 16,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:14:53.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "env_humidity": "0.0",
+        "env_temp_c": "0.00",
+        "fan_level": 1,
+        "fan_reversed": false,
+        "fan_scale": 1263,
+        "fan_height_cm": 213,
+        "light_level": 0,
+        "light_scale": 0,
+        "occupied": false,
+        "sleep_active": false,
+        "smart_active": false,
+        "timer_active": false,
+        "whoosh_active": false,
+        "winter_active": false,
+        "uptime": 348219,
+        "rssi": -43,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:14:53.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2015-10-14 01:09:42",
+      "updated_at_utc": "2016-12-19 18:14:53"
+    },
+    {
+      "id": "7286c2fc-44b8-4296-b2b2-7d293cbe5d02",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:AA:4B:CF",
+      "connected_since": null,
+      "latitude": "38.13460000",
+      "longitude": "-84.49580000",
+      "device_type": {
+        "id": 3,
+        "name": "GS1011 based Haiku"
+      },
+      "settings": {
+        "name": "the big el Fan",
+        "group_name": "jumanji",
+        "firmware": "2.2.36",
+        "ssid": "zach-desk",
+        "fan_auto": false,
+        "light_auto": true,
+        "occ_timeout": 600000,
+        "sleep_ideal_temp_c": "22.22",
+        "sleep_fan_level_min": 0,
+        "sleep_fan_level_max": 7,
+        "smart_mode": "off",
+        "smart_ideal_temp_c": "26.11",
+        "smart_fan_level_min": 1,
+        "smart_fan_level_max": 6,
+        "indicators_enabled": true,
+        "beeper_enabled": true,
+        "has_sensor_data": 1,
+        "bookends_fan_min": 1,
+        "bookends_fan_max": 7,
+        "bookends_light_min": 1,
+        "bookends_light_max": 16,
+        "last_reported_utc": {
+          "date": "2016-12-12 13:06:33.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "fan_level": 1,
+        "fan_reversed": false,
+        "fan_rpm": 35,
+        "fan_height_cm": 213,
+        "has_light": false,
+        "light_level": 0,
+        "timer_active": false,
+        "whoosh_active": false,
+        "sleep_active": false,
+        "smart_active": false,
+        "winter_active": false,
+        "occupied": true,
+        "humidity": "19.4",
+        "ambient_temp_c": "22.59",
+        "internal_temp_c": "30.38",
+        "case_temp_c": "26.86",
+        "uptime": 405539,
+        "rssi": -28,
+        "last_reported_utc": {
+          "date": "2016-12-12 13:06:33.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2015-09-30 17:37:06",
+      "updated_at_utc": "2016-12-12 13:06:33"
+    },
+    {
+      "id": "7bf9f203-0b16-4e8d-8677-0b5ffdc13ce5",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:C2:40:48",
+      "connected_since": null,
+      "latitude": "38.13460000",
+      "longitude": "-84.49580000",
+      "device_type": {
+        "id": 7,
+        "name": "Haiku H/I Series"
+      },
+      "settings": {
+        "name": "Kitchen Fan",
+        "group_name": "jumanji",
+        "firmware": "2.2.41",
+        "ssid": "zach-desk",
+        "fan_auto": false,
+        "light_auto": true,
+        "occ_timeout": 600000,
+        "sleep_ideal_temp_c": "22.22",
+        "sleep_fan_level_min": 0,
+        "sleep_fan_level_max": 3,
+        "smart_mode": "off",
+        "smart_ideal_temp_c": "26.11",
+        "smart_fan_level_min": 3,
+        "smart_fan_level_max": 5,
+        "indicators_enabled": true,
+        "beeper_enabled": true,
+        "boot": "0.5.1",
+        "fan_height_cm": 213,
+        "scheduled_events": 4,
+        "updater": "2.2.41",
+        "has_sensor_data": 1,
+        "bookends_fan_min": 1,
+        "bookends_fan_max": 7,
+        "bookends_light_min": 1,
+        "bookends_light_max": 16,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:14:51.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "fan_level": 0,
+        "fan_reversed": false,
+        "fan_rpm": 0,
+        "fan_height_cm": 213,
+        "fan_scale": 0,
+        "has_light": true,
+        "light_level": 0,
+        "light_scale": 0,
+        "timer_active": false,
+        "whoosh_active": false,
+        "sleep_active": false,
+        "smart_active": false,
+        "winter_active": false,
+        "occupied": true,
+        "env_humidity": "19.1",
+        "env_light": 1712,
+        "humidity": "12.7",
+        "ambient_temp_c": "24.23",
+        "internal_temp_c": "31.17",
+        "case_temp_c": "27.69",
+        "env_temp_c": "24.23",
+        "uptime": 348358,
+        "rssi": -35,
+        "last_reported_utc": {
+          "date": "2016-12-19 18:14:51.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2015-10-22 19:55:53",
+      "updated_at_utc": "2016-12-21 19:17:09"
+    },
+    {
+      "id": "9d0f6a6e-c988-4d4b-a199-85438be412ed",
+      "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+      "is_online": false,
+      "mac_address": "20:F8:5E:C2:3B:50",
+      "connected_since": null,
+      "latitude": "38.13460000",
+      "longitude": "-84.49580000",
+      "device_type": {
+        "id": 5,
+        "name": "Haiku L Series"
+      },
+      "settings": {
+        "name": "lseries1",
+        "group_name": "ragtag",
+        "firmware": "2.2.35",
+        "ssid": "zach-desk",
+        "light_auto": false,
+        "occ_timeout": 600000,
+        "boot": "2.0.4",
+        "scheduled_events": 0,
+        "updater": "2.2.35",
+        "has_sensor_data": 0,
+        "bookends_fan_min": 1,
+        "bookends_fan_max": 7,
+        "bookends_light_min": 1,
+        "bookends_light_max": 16,
+        "last_reported_utc": {
+          "date": "2016-12-07 15:34:19.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "state": {
+        "env_humidity": "0.0",
+        "env_temp_c": "0.00",
+        "fan_level": 0,
+        "fan_reversed": false,
+        "fan_scale": 0,
+        "fan_height_cm": 213,
+        "light_level": 0,
+        "light_scale": 0,
+        "occupied": false,
+        "sleep_active": false,
+        "smart_active": false,
+        "timer_active": false,
+        "whoosh_active": false,
+        "winter_active": false,
+        "uptime": 530008,
+        "rssi": -49,
+        "last_reported_utc": {
+          "date": "2016-12-07 15:34:19.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        }
+      },
+      "created_at_utc": "2015-09-23 22:26:40",
+      "updated_at_utc": "2016-12-21 19:15:59"
+    }
+  ],
+  "total": 7,
+  "per_page": 128,
+  "current_page": 1,
+  "count": 7
+}
