@@ -62,7 +62,15 @@ public class MockBASCloudAPI implements BASCloudAPI {
     }
 
     public Call<BASThermostatTypes> getThermostatTypes(@Header("Authorization") String myToken) {
-        return  delegate.returningResponse(null).getThermostatTypes(myToken);
+        BASThermostatTypes thermostatTypes = new BASThermostatTypes();
+        try {
+            String thermostatTypesJsonString = ApiTestHelper.getStringFromFile(this, "thermostat-types.json");
+            Gson gson = new Gson();
+            thermostatTypes = gson.fromJson(thermostatTypesJsonString, BASThermostatTypes.class);
+        } catch (Exception exception) {
+            Log.d(TAG, exception.toString());
+        }
+        return  delegate.returningResponse(thermostatTypes).getThermostatTypes(myToken);
     }
 
     public Call<BASThermostats> getUserThermostats(@Header("Authorization") String myToken) {

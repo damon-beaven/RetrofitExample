@@ -1,0 +1,88 @@
+{
+  "success": true,
+  "thermostat_token": [
+    {
+      "id": "cb1a02ad-7427-4c1b-bff8-4d4a68799568",
+      "thermostat_type": {
+        "id": "329ec0b2-c598-4ce5-8cf1-41efb0631e1a",
+        "name": "Nest"
+      },
+      "access_token": "c.2Z9ekLKZ1tQraQhgMJWNaUPT26ykRKn8ROqdfY4S5x6p3TUsaVWJpSuMwOu6VQQdmRfexCbFiwxcp02K4qyf1h5zr77st4wtq32exqu13MU9lyUBY7CqMXvf6jjydBoLF4cxcneDDRk9zfWv",
+      "expires_at": "2026-11-01 15:11:21"
+    },
+    {
+      "id": "d8e09fa9-d2cb-4b92-9a6f-cd708b8aae37",
+      "thermostat_type": {
+        "id": "cdb84c3c-1b24-4872-99dd-ecefd58d8cb9",
+        "name": "Ecobee"
+      },
+      "access_token": "xGjHj1OPU5f5FToMoFJL2bW9dZ8rlffp",
+      "expires_at": "2016-12-21 20:20:02"
+    }
+  ],
+  "thermostats": [
+    {
+      "id": "b54f3741-541f-4adb-abe9-f731ec78a14e",
+      "thermostat_token_id": "cb1a02ad-7427-4c1b-bff8-4d4a68799568",
+      "thermostat_type_id": "329ec0b2-c598-4ce5-8cf1-41efb0631e1a",
+      "thermostat_xid": "MAoQaWFaA8cbshvtDEPPmHJrzEYW8QB1",
+      "name": "Basement",
+      "address": null,
+      "city": null,
+      "state": null,
+      "postal_code": null,
+      "country": null,
+      "locale": "en-US",
+      "temperature_scale": "F",
+      "hvac_mode": "off",
+      "target_temperature_high_c": 30,
+      "target_temperature_high_f": 86,
+      "target_temperature_low_c": 20.5,
+      "target_temperature_low_f": 69,
+      "target_temperature_c": 22,
+      "target_temperature_f": 72,
+      "ambient_temperature_c": 29.5,
+      "ambient_temperature_f": 86,
+      "humidity": "15.0",
+      "is_online": true,
+      "away": false,
+      "linked_device_id": null,
+      "updated_at_utc": "2016-12-21 19:41:50",
+      "structure_name": "ZachDesk",
+      "location": "Basement",
+      "has_leaf": true
+    },
+    {
+      "id": "86073153-9f25-44e1-8163-5340ffebbb8b",
+      "thermostat_token_id": "d8e09fa9-d2cb-4b92-9a6f-cd708b8aae37",
+      "thermostat_type_id": "cdb84c3c-1b24-4872-99dd-ecefd58d8cb9",
+      "thermostat_xid": "310152426264",
+      "name": "Home",
+      "address": "2237 Innovation Dr",
+      "city": "Lexington",
+      "state": "KY",
+      "postal_code": "40511",
+      "country": "US",
+      "locale": "en",
+      "temperature_scale": "F",
+      "hvac_mode": "cool",
+      "target_temperature_high_c": 25.6,
+      "target_temperature_high_f": 78,
+      "target_temperature_low_c": 25.6,
+      "target_temperature_low_f": 78,
+      "target_temperature_c": 25.6,
+      "target_temperature_f": 78,
+      "ambient_temperature_c": 25.3,
+      "ambient_temperature_f": 78,
+      "humidity": "30.0",
+      "is_online": false,
+      "away": false,
+      "linked_device_id": "00c8d1b1-2f16-41a9-87b7-37edf84bbad6",
+      "updated_at_utc": "2016-12-21 19:41:02",
+      "heat_range_high": 790,
+      "heat_range_low": 450,
+      "cool_range_high": 920,
+      "cool_range_low": 650
+    }
+  ]
+}

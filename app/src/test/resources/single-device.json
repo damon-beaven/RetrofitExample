@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "devices": {
+    "id": "00c8d1b1-2f16-41a9-87b7-37edf84bbad6",
+    "account_id": "236c7765-08c0-4f52-b616-6bcea7508ee3",
+    "is_online": false,
+    "mac_address": "20:F8:5E:D8:80:1E",
+    "connected_since": null,
+    "latitude": null,
+    "longitude": null,
+    "device_type": {
+      "id": 6,
+      "name": "Haiku Light"
+    },
+    "settings": {
+      "name": "jumanji Light",
+      "group_name": "jumanji",
+      "firmware": "2.2.63",
+      "ssid": "zach-desk",
+      "light_auto": true,
+      "occ_timeout": 600000,
+      "boot": "0.4.19",
+      "scheduled_events": 4,
+      "updater": "2.2.63",
+      "bookends_light_min": 1,
+      "bookends_light_max": 16,
+      "light_mode": "ALC",
+      "alc_method": "AVERAGE",
+      "alc_min": 1,
+      "alc_max": 10,
+      "last_reported_utc": {
+        "date": "2016-12-19 18:15:13.000000",
+        "timezone_type": 3,
+        "timezone": "UTC"
+      }
+    },
+    "state": {
+      "ambient_temp_c": null,
+      "case_temp_c": null,
+      "env_light": 10104,
+      "env_temp_c": null,
+      "internal_temp_c": null,
+      "light_color_temp": 4150,
+      "light_level": 0,
+      "light_scale": 0,
+      "has_color": null,
+      "occupied": true,
+      "sleep_active": false,
+      "uptime": 338036,
+      "internal_light": null,
+      "alc_target_lux": 10464,
+      "rssi": -43,
+      "last_reported_utc": {
+        "date": "2016-12-19 18:15:13.000000",
+        "timezone_type": 3,
+        "timezone": "UTC"
+      }
+    },
+    "created_at_utc": "2016-11-15 14:39:11",
+    "updated_at_utc": "2016-12-21 19:37:05"
+  }
+}

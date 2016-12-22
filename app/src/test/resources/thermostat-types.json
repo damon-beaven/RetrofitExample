@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "thermostat_types": [
+    {
+      "id": "329ec0b2-c598-4ce5-8cf1-41efb0631e1a",
+      "name": "Nest",
+      "description": "Nest Thermostat",
+      "site_url": "nest.com",
+      "created_at_utc": "2016-01-20 19:06:14",
+      "updated_at_utc": "2016-01-20 19:06:14"
+    },
+    {
+      "id": "cdb84c3c-1b24-4872-99dd-ecefd58d8cb9",
+      "name": "Ecobee",
+      "description": "Ecobee Thermostat",
+      "site_url": "ecobee.com",
+      "created_at_utc": "2016-01-20 19:06:14",
+      "updated_at_utc": "2016-01-20 19:06:14"
+    }
+  ]
+}
