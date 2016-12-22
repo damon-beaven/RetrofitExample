@@ -4,21 +4,27 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import retrofit2.Response;
+import retrofit2.Retrofit;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASAuth;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASFirmware;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermostat;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BigAssCloudApiInterface;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
@@ -28,6 +34,15 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.EcobeeAuth
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
 
 public class MainActivity extends Activity {
+    @Inject
+    Retrofit mRetrofit;
+
+    @Inject
+    BigAssCloudApiInterface mBigAssCloudApiInterface;
+
+    @Inject
+    SharedPreferences mSharedPreferences;
+
     private enum LoginType {BASUSER, NESTUSER, ECOBEEUSER};
     private String mBaseURL;
     private Integer mPinFromEmail;
@@ -52,6 +67,7 @@ public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         //set up another user so we can add/delete/etc
 //        basNewUserAuthInfo.email = "rickyfirst@notlast.com";
@@ -64,6 +80,7 @@ public class MainActivity extends Activity {
         mBaseURL = BASCloudTask.API_BASE_URL;
 
         setContentView(R.layout.activity_main);
+        ((MyApp) getApplication()).getNetComponent().inject(this);
     }
 
     @Override
@@ -167,7 +184,7 @@ public class MainActivity extends Activity {
 
     private void doGetThermostatTypes(BASAuthInfo myBasAuthInfo) {
         BASThermostat thermostatTypes = new BASThermostat();
-
+        mBigAssCloudApiInterface.getUserInfo("token");
         thermostatTypes.getThermostatTypes(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
 
             @Override
