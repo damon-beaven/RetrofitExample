@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
         mBaseURL = BASCloudTask.API_BASE_URL;
 
         setContentView(R.layout.activity_main);
-        ((MyApp) getApplication()).getNetComponent().inject(this);
+        ((MyApp) getApplication()).getBigAssCloudComponent().inject(this);
     }
 
     @Override

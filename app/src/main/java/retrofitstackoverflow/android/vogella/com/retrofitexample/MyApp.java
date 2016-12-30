@@ -25,4 +25,5 @@ public class MyApp extends Application {
     public NetComponent getNetComponent() {
         return mNetComponent;
     }
+    public BigAssCloudComponent getBigAssCloudComponent() { return mBigAssCloudComponent; }
 }

@@ -51,7 +51,7 @@ public class NetModule {
         return gsonBuilder.create();
     }
 
-    @Provides @Named("cached")
+    @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(Cache cache) {
         OkHttpClient client = new OkHttpClient.Builder()
