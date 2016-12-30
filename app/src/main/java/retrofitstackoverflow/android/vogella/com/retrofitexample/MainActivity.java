@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASCloudTask;
@@ -99,7 +101,7 @@ public class MainActivity extends Activity {
                 doNewAuth(basAuthInfo);
                 return true;
             case R.id.menu_userInfo:
-                doNewUserInfo(basAuthInfo);
+                doNewUserInfo();
                 return true;
             case R.id.menu_userDevices:
                 doGetUserDevices(basAuthInfo);
@@ -127,7 +129,7 @@ public class MainActivity extends Activity {
                 //doConfirmUserFromPin();
                 return true;
             case R.id.menu_getNewUserInfo:
-                doNewUserInfo(basNewUserAuthInfo);
+                doNewUserInfo();
                 return true;
             case R.id.menu_updateNewUserInfo:
                 doUpdateUserInfo(basNewUserAuthInfo);
@@ -154,10 +156,10 @@ public class MainActivity extends Activity {
                 doGetFirmwareDownloadUrlFromToken();
                 return true;
             case R.id.menu_getThermostatTypes:
-                doGetThermostatTypes(basAuthInfo);
+                doGetThermostatTypes();
                 return true;
             case R.id.menu_loginBAS:
-//                doGetThermostatTypes();
+                doLogin();
                 return true;
             case R.id.menu_loginNest:
                 doNestLogin();
@@ -182,22 +184,47 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void doGetThermostatTypes(BASAuthInfo myBasAuthInfo) {
-        BASThermostat thermostatTypes = new BASThermostat();
-        mBigAssCloudApiInterface.getUserInfo("token");
-        thermostatTypes.getThermostatTypes(myBasAuthInfo, new BASCloudTask.CloudAsyncResponse() {
-
+    private void doLogin() {
+        Call<BASAccessToken> call = mBigAssCloudApiInterface.loginUser(BASAuthInfo.client_id,
+                BASAuthInfo.client_secret,
+                BASAuthInfo.GRANT_TYPE,
+                BASAuthInfo.SCOPE,
+                "zach.freeman@bigasssolutions.com",
+                "qwerty123");
+        call.enqueue(new Callback<BASAccessToken>() {
             @Override
-            public void onCloudResponse(Response response) {
-                //you have to know what the object "should" be to do your cast
-                if (response.body() != null)
-                    myThermostatTypes = (BASThermostatTypes) response.body();
-                updateTextViewFromResponse(response);
+            public void onResponse(Call<BASAccessToken> call, Response<BASAccessToken> response) {
+                if (response.isSuccessful()) {
+                    updateTextViewFromResponse(response);
+                    myToken = response.body();
+
+                } else {
+                    updateTextView("ERROR", String.valueOf(response.code()));
+                }
             }
 
             @Override
-            public void onCloudError(CloudMessage message) {
-                updateTextViewFromError(message);
+            public void onFailure(Call<BASAccessToken> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void doGetThermostatTypes() {
+        Call<BASThermostatTypes> call = mBigAssCloudApiInterface.getThermostatTypes("Bearer " + myToken.getAccess_token());
+        call.enqueue(new Callback<BASThermostatTypes>() {
+            @Override
+            public void onResponse(Call<BASThermostatTypes> call, Response<BASThermostatTypes> response) {
+                if (response.isSuccessful()) {
+                    updateTextViewFromResponse(response);
+                } else {
+                    updateTextView("ERROR", String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BASThermostatTypes> call, Throwable t) {
+
             }
         });
     }
@@ -520,22 +547,21 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void doNewUserInfo(BASAuthInfo myBasAuthInfo) {
-        BASUser userRead = new BASUser();
-
-        userRead.getExistingUserInfo(new BASCloudTask.CloudAsyncResponse() {
-
+    private void doNewUserInfo() {
+        Call<BASUserInfo> call = mBigAssCloudApiInterface.getUserInfo("Bearer " + myToken.getAccess_token());
+        call.enqueue(new Callback<BASUserInfo>() {
             @Override
-            public void onCloudResponse(Response response) {
-//                Toast.makeText(MainActivity.this, "got it", Toast.LENGTH_SHORT).show();
-                updateTextViewFromResponse(response);
-                //you have to know what the object "should" be to do your cast
-                if (response.body() != null) basNewUserInfo = (BASUserInfo) response.body();
+            public void onResponse(Call<BASUserInfo> call, Response<BASUserInfo> response) {
+                if (response.isSuccessful()) {
+                    updateTextViewFromResponse(response);
+                } else {
+                    updateTextView("ERROR", String.valueOf(response.code()));
+                }
             }
 
             @Override
-            public void onCloudError(CloudMessage message) {
-                updateTextViewFromError(message);
+            public void onFailure(Call<BASUserInfo> call, Throwable t) {
+
             }
         });
     }
