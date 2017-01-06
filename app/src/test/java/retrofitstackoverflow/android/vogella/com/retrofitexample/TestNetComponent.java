@@ -1,9 +1,16 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,7 +29,44 @@ public class TestNetComponent implements NetComponent {
     }
     @Override
     public OkHttpClient okHttpClient() {
-        return Mockito.mock(OkHttpClient.class);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .dispatcher(new Dispatcher(new AbstractExecutorService() {
+                    private boolean shutingDown = false;
+                    private boolean terminated = false;
+                    @Override
+                    public void shutdown() {
+                        this.shutingDown = true;
+                        this.terminated = true;
+                    }
+
+                    @NonNull
+                    @Override
+                    public List<Runnable> shutdownNow() {
+                        return new ArrayList<>();
+                    }
+
+                    @Override
+                    public boolean isShutdown() {
+                        return this.shutingDown;
+                    }
+
+                    @Override
+                    public boolean isTerminated() {
+                        return this.terminated;
+                    }
+
+                    @Override
+                    public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+                        return false;
+                    }
+
+                    @Override
+                    public void execute(Runnable command) {
+                        command.run();
+                    }
+                }))
+                .build();
+        return client;
     }
     @Override
     public SharedPreferences sharedPreferences() {

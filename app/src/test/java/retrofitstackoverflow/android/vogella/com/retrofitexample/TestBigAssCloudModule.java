@@ -1,6 +1,7 @@
 package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import dagger.Provides;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.mock.BehaviorDelegate;
 import retrofit2.mock.MockRetrofit;

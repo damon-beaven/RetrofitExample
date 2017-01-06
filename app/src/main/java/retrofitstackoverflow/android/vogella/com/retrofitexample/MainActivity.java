@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASFirmwa
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASThermostat;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BASUser;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.BigAssCloudApiInterface;
+import retrofitstackoverflow.android.vogella.com.retrofitexample.cloud.callbacks.BASAccessTokenCallback;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAccessToken;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.BASThermostatTypes;
@@ -36,7 +38,7 @@ import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.CloudMessa
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.EcobeeAuthInfo;
 import retrofitstackoverflow.android.vogella.com.retrofitexample.pojo.NestAuthInfo;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements BASCloudTask.CloudAsyncResponse {
     @Inject
     Retrofit mRetrofit;
 
@@ -185,6 +187,16 @@ public class MainActivity extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void doMyLogin() {
+        Call<BASAccessToken> call = mBigAssCloudApiInterface.loginUser(BASAuthInfo.client_id,
+                BASAuthInfo.client_secret,
+                BASAuthInfo.GRANT_TYPE,
+                BASAuthInfo.SCOPE,
+                "zach.freeman@bigasssolutions.com",
+                "qwerty123");
+        call.enqueue(new BASAccessTokenCallback<BASAccessToken>(this));
     }
 
     public void doLogin() {
@@ -785,5 +797,12 @@ public class MainActivity extends Activity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void onCloudResponse(Response response) {
+        Log.i("hey", "response");
+    }
+    public void onCloudError(CloudMessage message) {
+        Log.i("hey", "error");
     }
 }

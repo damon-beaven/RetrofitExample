@@ -37,7 +37,9 @@ public class MainActivityTest {
     public void testDoLogin() {
         BASAccessToken basAccessToken = new BASAccessToken();
         basAccessToken.setAccess_token("test");
-        subject.doLogin();
+        basAccessToken.setToken_type("Bearer");
+        basAccessToken.setExpires_in(604800);
+        subject.doMyLogin();
         assertThat(subject.myToken, is(equalTo(basAccessToken)));
     }
 }

@@ -95,7 +95,15 @@ public class MockBigAssCloudApiInterface implements BigAssCloudApiInterface {
                                           @Field("scope") String scope,
                                           @Field("email") String email,
                                           @Field("password") String password) {
-        return  delegate.returningResponse(null).loginUser(clientId, clientSecret, grantType, scope, email, password);
+        BASAccessToken basAccessToken= new BASAccessToken();
+        try {
+            String loginUserJsonString = ApiTestHelper.getStringFromFile(this, "login-user.json");
+            Gson gson = new Gson();
+            basAccessToken = gson.fromJson(loginUserJsonString, BASAccessToken.class);
+        } catch (Exception exception) {
+            Log.d(TAG, exception.toString());
+        }
+        return  delegate.returningResponse(basAccessToken).loginUser(clientId, clientSecret, grantType, scope, email, password);
     }
 
     @POST("/oauth/access_token")
