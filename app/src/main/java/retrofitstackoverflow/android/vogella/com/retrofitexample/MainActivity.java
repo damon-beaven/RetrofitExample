@@ -2,6 +2,7 @@ package retrofitstackoverflow.android.vogella.com.retrofitexample;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -82,7 +83,9 @@ public class MainActivity extends Activity {
         mBaseURL = BASCloudTask.API_BASE_URL;
 
         setContentView(R.layout.activity_main);
-        ((MyApp) getApplication()).getBigAssCloudComponent().inject(this);
+        MyApp myApp = (MyApp) getApplication();
+        BigAssCloudComponent bigAssCloudComponent = myApp.getBigAssCloudComponent();
+        bigAssCloudComponent.inject(this);
     }
 
     @Override
@@ -184,7 +187,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void doLogin() {
+    public void doLogin() {
         Call<BASAccessToken> call = mBigAssCloudApiInterface.loginUser(BASAuthInfo.client_id,
                 BASAuthInfo.client_secret,
                 BASAuthInfo.GRANT_TYPE,

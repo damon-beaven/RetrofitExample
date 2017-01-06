@@ -12,14 +12,20 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mNetComponent = DaggerNetComponent.builder()
+        mNetComponent = prepareNetComponent().build();
+        mBigAssCloudComponent = prepareBigAssCloudComponent().build();
+    }
+
+    protected DaggerNetComponent.Builder prepareNetComponent() {
+        return DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule(BASCloudTask.API_BASE_URL))
-                .build();
-        mBigAssCloudComponent = DaggerBigAssCloudComponent.builder()
+                .netModule(new NetModule(BASCloudTask.API_BASE_URL));
+    }
+
+    protected DaggerBigAssCloudComponent.Builder prepareBigAssCloudComponent() {
+        return DaggerBigAssCloudComponent.builder()
                 .netComponent(mNetComponent)
-                .bigAssCloudModule(new BigAssCloudModule())
-                .build();
+                .bigAssCloudModule(new BigAssCloudModule());
     }
 
     public NetComponent getNetComponent() {
